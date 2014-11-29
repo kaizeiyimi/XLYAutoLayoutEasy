@@ -1,7 +1,7 @@
 
 ### Quick look ###
 
-`objective-c
+```objective-c
 //objective-c code
 [UIView makeConstraints:^{
 testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(@50);
@@ -9,9 +9,9 @@ testView.layoutTrailing.equalTo(self.view).offset(@-50);
 testView.layoutLeading.equalTo(@50);
 testView.layoutHeight.equalTo(@100);
 }];
-`
+```
 
-`
+```swift
 //swift code
 UIView.makeConstraints {
 view.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(100)
@@ -19,7 +19,7 @@ view.layoutLeading.equalTo(self.view).offset(50)
 view.layoutTrailing.equalTo(self.view).offset(-50)
 view.layoutHeight.equalTo(100).priority(750)
 }
-`
+```
 It's easy to read and write. isn't it?
 
 swift compiler has a bug that `UILayoutPriority` variables cannot appear in code or else the compilation fails. so currently we developer must use 750 to replace `UILayoutPriorityDefaultHigh`.
