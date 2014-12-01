@@ -34,3 +34,16 @@
 + (void)xly_addRawConstraint:(XLYConstraint *)constraint;
 
 @end
+
+
+typedef NS_ENUM(NSInteger, EXLYConstraintSimilarState) {
+    EXLYConstraintNotSimilar,
+    EXLYConstraintSimilar,
+    EXLYConstraintReverseSimilar
+};
+
+@interface NSLayoutConstraint (XLAutoLayoutAdditionPrivate)
+
+- (EXLYConstraintSimilarState)xly_similarStateWithConstraint:(NSLayoutConstraint *)constraint;
+
+@end

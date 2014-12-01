@@ -91,6 +91,14 @@
     return self.layoutAttribute(NSLayoutAttributeRightMargin);
 }
 
+- (XLYViewAttribute *)layoutLeadingMargin {
+    return self.layoutAttribute(NSLayoutAttributeLeadingMargin);
+}
+
+- (XLYViewAttribute *)layoutTrailingMargin {
+    return self.layoutAttribute(NSLayoutAttributeTrailingMargin);
+}
+
 - (XLYViewAttribute *)layoutCenterXWithinMargins {
     return self.layoutAttribute(NSLayoutAttributeCenterXWithinMargins);
 }
@@ -146,9 +154,14 @@ static BOOL __XLYShouldCountConstraint = NO;
         block();
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
             NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
-            NSLayoutConstraint *similarContraint = [UIView xly_similarConstraintsWithConstraint:constraint];
+            EXLYConstraintSimilarState state;
+            NSLayoutConstraint *similarContraint = [UIView xly_similarConstraintsWithConstraint:constraint similarState:&state];
             if (similarContraint) {
-                similarContraint.constant = constraint.constant;
+                if (state == EXLYConstraintSimilar) {
+                    similarContraint.constant = constraint.constant;
+                } else if (state == EXLYConstraintReverseSimilar) {
+                    similarContraint.constant = -constraint.constant*similarContraint.multiplier;
+                }
                 [constraints addObject:similarContraint];
             } else {
                 [constraint xly_install];
@@ -255,23 +268,19 @@ static BOOL __XLYShouldCountConstraint = NO;
     }]];
 }
 
-+ (NSLayoutConstraint *)xly_similarConstraintsWithConstraint:(NSLayoutConstraint *)theConstraint
++ (NSLayoutConstraint *)xly_similarConstraintsWithConstraint:(NSLayoutConstraint *)theConstraint similarState:(EXLYConstraintSimilarState *)stateRef
 {
     UIView *commonSuperView = [self xly_ClosestCommonSuperviewForView1:theConstraint.firstItem view2:theConstraint.secondItem];
     while (commonSuperView) {
         for (NSLayoutConstraint *constraint in commonSuperView.constraints.reverseObjectEnumerator) {
             if ([NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"]) continue;
-            if (constraint.firstItem != theConstraint.firstItem) continue;
-            if (constraint.firstAttribute != theConstraint.firstAttribute) continue;
-            if (constraint.secondItem != theConstraint.secondItem) continue;
-            if (constraint.secondAttribute != theConstraint.secondAttribute) continue;
-            if (constraint.multiplier != theConstraint.multiplier) continue;
-            if (constraint.relation != theConstraint.relation) continue;
-            // apple says:  'priority' property may only be modified as part of initial set up.  An exception will be thrown if it is set after a constraint has been added to a view.
-            // But it really can be modifed after added to a view as long as the priority is not requied. you can change priority from a to b where a and b are both less than 1000, and no exception will be throw.
-            // but here we respect to the doc, modify the priority is not allowed in my codes. you can still modify priority out of my codes.
-            if (constraint.priority != theConstraint.priority) continue;
-            return constraint;
+            EXLYConstraintSimilarState state = [theConstraint xly_similarStateWithConstraint:constraint];
+            if (state != EXLYConstraintNotSimilar) {
+                if (stateRef) {
+                    *stateRef = state;
+                }
+                return constraint;
+            }
         }
         commonSuperView = commonSuperView.superview;
     }

@@ -43,6 +43,9 @@
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutBottomMargin NS_ENUM_AVAILABLE_IOS(8_0);
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutRightMargin NS_ENUM_AVAILABLE_IOS(8_0);
 
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutLeadingMargin NS_ENUM_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutTrailingMargin NS_ENUM_AVAILABLE_IOS(8_0);
+
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterXWithinMargins NS_ENUM_AVAILABLE_IOS(8_0);
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterYWithinMargins NS_ENUM_AVAILABLE_IOS(8_0);
 
