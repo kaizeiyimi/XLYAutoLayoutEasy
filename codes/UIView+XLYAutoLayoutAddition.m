@@ -185,9 +185,7 @@ static BOOL __XLYShouldCountConstraint = NO;
         }
         for (UIView *view in relatedViews) {
             for (NSLayoutConstraint *constraint in [view xly_associatedNormalConstraints]) {
-                if (constraint.firstItem == view) {
-                    [constraint xly_uninstall];   
-                }
+                    [constraint xly_uninstall];
             }
         }
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {

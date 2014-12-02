@@ -6,11 +6,30 @@
 
 // import "XLYAutoLayoutEasy.h"
 
+//make constraints
 [UIView makeConstraints:^{
-testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(50);
-testView.layoutTrailing.equalTo(self.view).constant(-50);
-testView.layoutLeading.equalToConstant(50);
-testView.layoutHeight.equalToConstant(100);
+    testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(50);
+    testView.layoutTrailing.equalTo(self.view).constant(-50);
+    testView.layoutLeading.equalToConstant(50);
+    testView.layoutHeight.equalToConstant(100);
+}];
+
+//update
+[UIView updateConstraints:^{
+    self.testView.layoutLeading.equalTo(self.view).constant(metric);
+
+        //the top constraint is created in storyboard, and can be updated in this block.
+    self.label.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(metric);
+}];
+
+//remake, all the constraint associated with testView will be removed before the new constraints being active.
+[UIView remakeConstraints:^{
+    self.testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(metric + 120);
+    self.testView.layoutTrailing.equalTo(self.view).constant(-metric);
+
+        //here we can get the resultConstraint, and can be modified later
+    self.constraint = self.testView.layoutLeading.equalToConstant(metric).resultConstraint;
+    self.testView.layoutHeight.equalToConstant(metric);
 }];
 ```
 

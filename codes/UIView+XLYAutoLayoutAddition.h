@@ -88,7 +88,7 @@
  * apple says: priority property may only be modified as part of initial set up.  An exception will be thrown if it is set after a constraint has been added to a view. But it really can be modifed after added to a view as long as the priority is not requied. you can change priority from a to b where a and b are both less than 1000 and no exception is thrown. But  modify the priority here in my codes is not allowed.
  *
  *
- *  the 'NSContentSizeLayoutConstraint' is not included in similar constraints cause they are created by setting 'CompressionResistance' and 'hugging' priorities of view.
+ *  the 'NSContentSizeLayoutConstraint' is not included in similar constraints cause they are created by setting 'CompressionResistance' and 'hugging' properties of view.
  */
 + (NSArray *)updateConstraints:(dispatch_block_t)block;
 
@@ -97,23 +97,12 @@
  *
  *  1. record the views which appears as firstItem in the block.
  *
- *  2. remove all constraints whose firstItem equals to the recorded view.
+ *  2. remove all constraints whose firstItem or secondItem equals to the recorded view.
  *
  *  3. make and active newly created contraints.
  *
- *  you must notice that constraint will be removed only when its firstItem is the view who appears as firstItem in the block. 
- *  for example:
+ *  you must pay attention to use this method.
  *
- *  aView.layoutWidth.equalTo(bView); //constraint A, first item is aView.
- *  then you remake with: 
- *  aView.layoutWidth.equalTo(@100);
- *  A will be removed.
- *
- *  but if you create constraint as:
- *  bView.layoutWidth.equalTo(aView); //constraint B, first item is bView.
- *  then you remake with:
- *  aView.layoutWidth.equalTo(@100);
- *  B will not be removed.
  */
 + (NSArray *)remakeConstraints:(dispatch_block_t)block;
 
