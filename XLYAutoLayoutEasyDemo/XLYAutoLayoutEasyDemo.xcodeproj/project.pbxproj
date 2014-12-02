@@ -10,7 +10,6 @@
 		F620633B1A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = F62063351A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.m */; };
 		F620633C1A1DF13400432ED8 /* XLYViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F62063391A1DF13400432ED8 /* XLYViewAttribute.m */; };
 		F63600FF1A29623100E3DB35 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F63600FD1A29623100E3DB35 /* LICENSE */; };
-		F63601001A29623100E3DB35 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = F63600FE1A29623100E3DB35 /* README.md */; };
 		F675B5911A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = F675B5901A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.m */; };
 		F6D200001A1F748E00981D11 /* XLYConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D2FFFF1A1F748E00981D11 /* XLYConstraint.m */; };
 		F6D200041A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D200031A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.m */; };
@@ -44,6 +43,11 @@
 		F63600FE1A29623100E3DB35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F675B58F1A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XLYAutoLayoutAddition.h"; sourceTree = "<group>"; };
 		F675B5901A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XLYAutoLayoutAddition.m"; sourceTree = "<group>"; };
+		F6B440931A2D8CCD008488B9 /* XLYAutoLayoutEasy-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLYAutoLayoutEasy-swift.h"; sourceTree = "<group>"; };
+		F6B440941A2D8D23008488B9 /* XLYViewAttribute-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLYViewAttribute-swift.h"; sourceTree = "<group>"; };
+		F6B440951A2D8D84008488B9 /* XLYViewAttribute-OC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLYViewAttribute-OC.h"; sourceTree = "<group>"; };
+		F6B440961A2D8E40008488B9 /* XLYConstraint-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLYConstraint-swift.h"; sourceTree = "<group>"; };
+		F6B440971A2D8E77008488B9 /* XLYConstraint-OC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XLYConstraint-OC.h"; sourceTree = "<group>"; };
 		F6D200011A20BA7100981D11 /* XLAutoLayoutEasyPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLAutoLayoutEasyPrivate.h; sourceTree = "<group>"; };
 		F6D200021A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+XLYAutoLayoutAddition.h"; sourceTree = "<group>"; };
 		F6D200031A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+XLYAutoLayoutAddition.m"; sourceTree = "<group>"; };
@@ -90,13 +94,18 @@
 				F63600FD1A29623100E3DB35 /* LICENSE */,
 				F63600FE1A29623100E3DB35 /* README.md */,
 				F62063361A1DF13400432ED8 /* XLYAutoLayoutEasy.h */,
+				F6B440931A2D8CCD008488B9 /* XLYAutoLayoutEasy-swift.h */,
 				F6D200011A20BA7100981D11 /* XLAutoLayoutEasyPrivate.h */,
-				F62063341A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.h */,
-				F62063351A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.m */,
 				F6D2FFFE1A1F748E00981D11 /* XLYConstraint.h */,
+				F6B440971A2D8E77008488B9 /* XLYConstraint-OC.h */,
+				F6B440961A2D8E40008488B9 /* XLYConstraint-swift.h */,
 				F6D2FFFF1A1F748E00981D11 /* XLYConstraint.m */,
 				F62063381A1DF13400432ED8 /* XLYViewAttribute.h */,
+				F6B440951A2D8D84008488B9 /* XLYViewAttribute-OC.h */,
+				F6B440941A2D8D23008488B9 /* XLYViewAttribute-swift.h */,
 				F62063391A1DF13400432ED8 /* XLYViewAttribute.m */,
+				F62063341A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.h */,
+				F62063351A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.m */,
 				F6D200021A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.h */,
 				F6D200031A20E8A300981D11 /* NSLayoutConstraint+XLYAutoLayoutAddition.m */,
 				F675B58F1A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.h */,
@@ -269,7 +278,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F63601001A29623100E3DB35 /* README.md in Sources */,
 				F6D2FFD31A1B825000981D11 /* ViewController.m in Sources */,
 				F620633B1A1DF13400432ED8 /* UIView+XLYAutoLayoutAddition.m in Sources */,
 				F675B5911A2844FF005F8EBE /* UIViewController+XLYAutoLayoutAddition.m in Sources */,

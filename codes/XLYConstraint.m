@@ -1,6 +1,5 @@
 //
 //  XLYConstraint.m
-//  XLYAutoLayoutEasyDemo
 //
 //  Created by kaizei on 14/11/21.
 //  Copyright (c) 2014年 kaizei. All rights reserved.
@@ -13,7 +12,7 @@
 
 @property (nonatomic, assign) CGFloat layoutMultiplier;
 @property (nonatomic, assign) float layoutPriority;
-@property (nonatomic, assign) CGFloat constant;
+@property (nonatomic, assign) CGFloat layoutConstant;
 
 @property (nonatomic, strong) NSLayoutConstraint *constraint;
 
@@ -26,7 +25,7 @@
     if (self = [super init]) {
         self.layoutMultiplier = 1.0;
         self.layoutPriority = UILayoutPriorityRequired;
-        self.constant = 0.0;
+        self.layoutConstant = 0.0;
     }
     return self;
 }
@@ -43,9 +42,9 @@
     };
 }
 
-- (XLYConstraint *(^)(id))offset {
-    return ^XLYConstraint *(id attr) {
-        return [self offset:attr];
+- (XLYConstraint *(^)(CGFloat))constant {
+    return ^XLYConstraint *(CGFloat attr) {
+        return [self constant:attr];
     };
 }
 
@@ -61,10 +60,9 @@
     return self;
 }
 
-- (XLYConstraint *)offset:(id)offset
+- (XLYConstraint *)constant:(CGFloat)constant
 {
-    NSAssert([offset isKindOfClass:NSNumber.class], @"offset must be 'NSNumber' value");
-    self.constant = [offset doubleValue];
+    self.layoutConstant = constant;
     return self;
 }
 
@@ -86,14 +84,14 @@
             secondAttribute = firstAttribute;
         } else if ([self.secondAttribute isKindOfClass:NSNumber.class]) { //其他数值类型
             if (firstAttribute == NSLayoutAttributeWidth || firstAttribute == NSLayoutAttributeHeight) {
-                self.constant = [self.secondAttribute doubleValue];
+                self.layoutConstant = [self.secondAttribute doubleValue];
             } else {
                 secondItem = [firstItem superview];
                 secondAttribute = firstAttribute;
-                self.constant = [self.secondAttribute doubleValue];
+                self.layoutConstant = [self.secondAttribute doubleValue];
             }
         }
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:self.relation toItem:secondItem attribute:secondAttribute multiplier:self.layoutMultiplier constant:self.constant];
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:self.relation toItem:secondItem attribute:secondAttribute multiplier:self.layoutMultiplier constant:self.layoutConstant];
         constraint.priority = self.layoutPriority;
         _constraint = constraint;
     }

@@ -1,6 +1,5 @@
 //
 //  XLYConstraintPrivate.h
-//  XLYAutoLayoutEasyDemo
 //
 //  Created by kaizei on 14/11/22.
 //  Copyright (c) 2014年 kaizei. All rights reserved.

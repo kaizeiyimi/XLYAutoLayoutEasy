@@ -1,12 +1,12 @@
 //
-//  XLYAutoLayoutEasy.h
+//  XLYAutoLayoutEasy-swift.h
 //
-//  Created by kaizei on 14/11/18.
+//  Created by 王凯 on 14/12/2.
 //  Copyright (c) 2014年 kaizei. All rights reserved.
 //
 
-#import "XLYConstraint-OC.h"
-#import "XLYViewAttribute-OC.h"
+#import "XLYConstraint-swift.h"
+#import "XLYViewAttribute-swift.h"
 #import "UIView+XLYAutoLayoutAddition.h"
 #import "NSLayoutConstraint+XLYAutoLayoutAddition.h"
 #import "UIViewController+XLYAutoLayoutAddition.h"

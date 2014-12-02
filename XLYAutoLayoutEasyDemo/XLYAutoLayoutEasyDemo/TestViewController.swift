@@ -25,9 +25,9 @@ class SwiftViewController: UIViewController {
         self.view.addSubview(view)
         testView = view
         UIView.makeConstraints {
-            view.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(100)
-            view.layoutLeading.equalTo(self.view).offset(50)
-            view.layoutTrailing.equalTo(self.view).offset(-50)
+            view.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(100)
+            view.layoutLeading.equalTo(self.view).constant(50)
+            view.layoutTrailing.equalTo(self.view).constant(-50)
             // the priority of height is 750, change1 and change2 function will not modify this constraint but add a new constraint with 1000 priority. so after change function called, testView will have two height constraint, one's priority is 750 and another is 1000.
             view.layoutHeight.equalTo(100).priority(750)
         }

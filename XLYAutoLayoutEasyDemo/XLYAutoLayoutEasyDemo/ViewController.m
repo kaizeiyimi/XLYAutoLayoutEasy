@@ -50,9 +50,9 @@
 {
     //make, update, remake methods will return the created constraints.
     __unused NSArray *constraints = [UIView makeConstraints:^{
-        self.testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(@200); //vertical space to the topLayoutGuide's bottom
-        self.testView.layoutTrailing.equalTo(self.view).offset(@-100); // default to self.view.layoutTrailing
-        self.testView.layoutLeading.equalTo(@100); //default to superview's layoutLeading
+        self.testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(200); //vertical space to the topLayoutGuide's bottom
+        self.testView.layoutTrailing.equalTo(self.view).constant(-100); // default to self.view.layoutTrailing
+        self.testView.layoutLeading.equalToConstant(100); //default to superview's layoutLeading
         self.testView.layoutHeight.equalTo(self.label).priority(UILayoutPriorityDefaultHigh); // default to label's layoutHeight
     }];
 }
@@ -63,10 +63,10 @@
     CGFloat metric = change ? 80 : 120;
     //you can just write a similar layout to update. no constraint refrence needed.
     [UIView updateConstraints:^{
-        self.testView.layoutLeading.equalTo(self.view).offset(@(metric));
+        self.testView.layoutLeading.equalTo(self.view).constant(metric);
         
         //the top constraint is created in storyboard, and can be updated in this block.
-        self.label.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(@(metric));
+        self.label.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(metric);
     }];
     change = !change;
     
@@ -87,11 +87,11 @@
     CGFloat metric = change ? 80 : 120;
     [UIView animateWithDuration:0.5 animations:^{
         [UIView remakeConstraints:^{
-            self.testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).offset(@(metric + 120));
-            self.testView.layoutTrailing.equalTo(self.view).offset(@(-metric));
+            self.testView.layoutTop.equalTo(self.topLayoutGuideView.layoutBottom).constant(metric + 120);
+            self.testView.layoutTrailing.equalTo(self.view).constant(-metric);
             //here we can get the resultConstraint, and can be modified later
-            self.constraint = self.testView.layoutLeading.equalTo(@(metric)).resultConstraint;
-            self.testView.layoutHeight.equalTo(@(metric));
+            self.constraint = self.testView.layoutLeading.equalToConstant(metric).resultConstraint;
+            self.testView.layoutHeight.equalToConstant(metric);
             change = !change;
         }];
         [self.view layoutIfNeeded];
