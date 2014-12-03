@@ -35,21 +35,21 @@
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutLastBaseLine;
 
 //ios8
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutFirstBaseLine NS_ENUM_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutFirstBaseLine NS_AVAILABLE_IOS(8_0);
 
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutTopMargin NS_ENUM_AVAILABLE_IOS(8_0);
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutLeftMargin NS_ENUM_AVAILABLE_IOS(8_0);
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutBottomMargin NS_ENUM_AVAILABLE_IOS(8_0);
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutRightMargin NS_ENUM_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutTopMargin NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutLeftMargin NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutBottomMargin NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutRightMargin NS_AVAILABLE_IOS(8_0);
 
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutLeadingMargin NS_ENUM_AVAILABLE_IOS(8_0);
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutTrailingMargin NS_ENUM_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutLeadingMargin NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutTrailingMargin NS_AVAILABLE_IOS(8_0);
 
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterXWithinMargins NS_ENUM_AVAILABLE_IOS(8_0);
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterYWithinMargins NS_ENUM_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterXWithinMargins NS_AVAILABLE_IOS(8_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutCenterYWithinMargins NS_AVAILABLE_IOS(8_0);
 
 //NSLayoutAttributeNotAnAttribute
-@property (nonatomic, strong, readonly) XLYViewAttribute *layoutNone NS_ENUM_AVAILABLE_IOS(6_0);
+@property (nonatomic, strong, readonly) XLYViewAttribute *layoutNone NS_AVAILABLE_IOS(6_0);
 
 ///full version for layout* properties.
 - (XLYViewAttribute *(^)(NSLayoutAttribute))layoutAttribute;
