@@ -203,7 +203,7 @@ static BOOL __XLYShouldCountConstraint = NO;
 - (UIView *)xly_closestCommonSuperviewWithView:(UIView *)view
 {
     if (!view) {
-        return self;
+        return nil;
     }
     UIView *view1 = self, *view2 = view;
     NSInteger count1 = 0, count2 = 0;
@@ -267,7 +267,10 @@ static BOOL __XLYShouldCountConstraint = NO;
 
 + (NSLayoutConstraint *)xly_similarConstraintsWithConstraint:(NSLayoutConstraint *)theConstraint similarState:(EXLYConstraintSimilarState *)stateRef
 {
-    UIView *commonSuperView = [self xly_ClosestCommonSuperviewForView1:theConstraint.firstItem view2:theConstraint.secondItem];
+    UIView *commonSuperView = theConstraint.firstItem;
+    if (theConstraint.secondItem) {
+        commonSuperView = [self xly_ClosestCommonSuperviewForView1:theConstraint.firstItem view2:theConstraint.secondItem];
+    }
     while (commonSuperView) {
         for (NSLayoutConstraint *constraint in commonSuperView.constraints.reverseObjectEnumerator) {
             if ([NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"]) continue;

@@ -108,7 +108,7 @@
 
 /** 
  *  find the closet common superview with another view.
- *  @return the closet common superview or 'self' if 'view' is nil.
+ *  @return the closet common superview or 'nil' if 'view' is nil.
  */
 - (UIView *)xly_closestCommonSuperviewWithView:(UIView *)view;
 + (UIView *)xly_ClosestCommonSuperviewForView1:(UIView *)view1 view2:(UIView *)view2;

@@ -17,12 +17,12 @@
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         self.active = YES;
     } else {
+        UIView *commonSuperView = self.firstItem;
         if (self.secondItem) {
             UIView *commonSuperView = [UIView xly_ClosestCommonSuperviewForView1:self.firstItem view2:self.secondItem];
-            [commonSuperView addConstraint:self];
-        } else {
-            [self.firstItem addConstraint:self];
+            NSAssert(commonSuperView, @"must have a common superview of %@ and %@ to add the constraint %@.", self.firstItem, self.secondItem, self);
         }
+        [commonSuperView addConstraint:self];
     }
 }
 
@@ -31,11 +31,15 @@
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
         self.active = NO;
     } else {
+        UIView *commonSuperView = self.firstItem;
         if (self.secondItem) {
-            UIView *commonSuperView = [UIView xly_ClosestCommonSuperviewForView1:self.firstItem view2:self.secondItem];
-            [commonSuperView removeConstraint:self];
-        } else {
-            [self.firstItem removeConstraint:self];
+            commonSuperView = [UIView xly_ClosestCommonSuperviewForView1:self.firstItem view2:self.secondItem];
+        }
+        while (commonSuperView) {
+            if ([commonSuperView.constraints containsObject:self]) {
+                [commonSuperView removeConstraint:self];
+                break;
+            }
         }
     }
 }
