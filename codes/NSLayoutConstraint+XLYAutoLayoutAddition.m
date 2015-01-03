@@ -39,6 +39,8 @@
             if ([commonSuperView.constraints containsObject:self]) {
                 [commonSuperView removeConstraint:self];
                 break;
+            } else {
+                commonSuperView = commonSuperView.superview;
             }
         }
     }
@@ -61,8 +63,21 @@
             if (self.firstAttribute != theConstraint.secondAttribute) return EXLYConstraintNotSimilar;
             if (self.secondAttribute != theConstraint.firstAttribute) return EXLYConstraintNotSimilar;
             if (fabsf(self.multiplier * theConstraint.multiplier - 1.0) > 1e-6) return EXLYConstraintNotSimilar;
-            if (self.relation != theConstraint.relation) return EXLYConstraintNotSimilar;
             if (self.priority != theConstraint.priority) return EXLYConstraintNotSimilar;
+            //relation
+            if (self.relation == NSLayoutRelationEqual) {
+                if (theConstraint.relation != NSLayoutRelationEqual) {
+                    return EXLYConstraintNotSimilar;
+                }
+            } else if (self.relation == NSLayoutRelationGreaterThanOrEqual) {
+                if (theConstraint.relation != NSLayoutRelationLessThanOrEqual) {
+                    return EXLYConstraintNotSimilar;
+                }
+            } else if (self.relation == NSLayoutRelationLessThanOrEqual) {
+                if (theConstraint.relation != NSLayoutRelationGreaterThanOrEqual) {
+                    return EXLYConstraintNotSimilar;
+                }
+            }
             return EXLYConstraintReverseSimilar;
         }
     return EXLYConstraintNotSimilar;

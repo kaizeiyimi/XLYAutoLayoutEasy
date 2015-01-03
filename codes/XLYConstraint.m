@@ -66,7 +66,6 @@
     return self;
 }
 
-
 - (NSLayoutConstraint *)resultConstraint
 {
     if (!_constraint) {
@@ -78,7 +77,7 @@
         
         if ([self.secondAttribute isKindOfClass:XLYViewAttribute.class]) {
             secondItem = [self.secondAttribute view];
-            secondAttribute = [self.secondAttribute ns_layoutAttribute];
+            secondAttribute = [(XLYViewAttribute *)self.secondAttribute ns_layoutAttribute];
         } else if ([self.secondAttribute isKindOfClass:UIView.class]) { //layoutGuide目前实现为UIVIew
             secondItem = self.secondAttribute;
             secondAttribute = firstAttribute;

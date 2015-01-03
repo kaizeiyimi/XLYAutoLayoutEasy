@@ -7,7 +7,6 @@
 
 #import "UIView+XLYAutoLayoutAddition.h"
 
-#import <objc/runtime.h>
 #import "XLAutoLayoutEasyPrivate.h"
 #import "NSLayoutConstraint+XLYAutoLayoutAddition.h"
 
@@ -130,9 +129,10 @@ static BOOL __XLYShouldCountConstraint = NO;
 
 + (NSArray *)makeConstraints:(dispatch_block_t)block
 {
-    NSMutableArray *constraints = [NSMutableArray array];
+    NSMutableArray *constraints = nil;
     if (block) {
         __XLYShouldCountConstraint = YES;
+        constraints = [NSMutableArray array];
         block();
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
             NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
@@ -147,9 +147,10 @@ static BOOL __XLYShouldCountConstraint = NO;
 
 + (NSArray *)updateConstraints:(dispatch_block_t)block
 {
-    NSMutableArray *constraints = [NSMutableArray array];
+    NSMutableArray *constraints = nil;
     if (block) {
         __XLYShouldCountConstraint = YES;
+        constraints = [NSMutableArray array];
         block();
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
             NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
@@ -159,7 +160,7 @@ static BOOL __XLYShouldCountConstraint = NO;
                 if (state == EXLYConstraintSimilar) {
                     similarContraint.constant = constraint.constant;
                 } else if (state == EXLYConstraintReverseSimilar) {
-                    similarContraint.constant = -constraint.constant*similarContraint.multiplier;
+                    similarContraint.constant = - constraint.constant * similarContraint.multiplier;
                 }
                 [constraints addObject:similarContraint];
             } else {
@@ -168,16 +169,17 @@ static BOOL __XLYShouldCountConstraint = NO;
             }
         }
         [[self xly_constraintsToBeAdded] removeAllObjects];
-        __XLYShouldCountConstraint = YES;
+        __XLYShouldCountConstraint = NO;
     }
     return constraints;
 }
 
 + (NSArray *)remakeConstraints:(dispatch_block_t)block
 {
-    NSMutableArray *constraints = [NSMutableArray array];
+    NSMutableArray *constraints = nil;
     if (block) {
         __XLYShouldCountConstraint = YES;
+        constraints = [NSMutableArray array];
         block();
         NSMutableSet *relatedViews = [NSMutableSet set];
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
@@ -194,7 +196,7 @@ static BOOL __XLYShouldCountConstraint = NO;
             [constraints addObject:constraint];
         }
         [[self xly_constraintsToBeAdded] removeAllObjects];
-        __XLYShouldCountConstraint = YES;
+        __XLYShouldCountConstraint = NO;
     }
     return constraints;
 }
