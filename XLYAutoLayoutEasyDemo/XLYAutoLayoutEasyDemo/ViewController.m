@@ -61,7 +61,7 @@
 {
     static BOOL change = YES;
     CGFloat metric = change ? 80 : 120;
-    //you can just write a similar layout to update. no constraint refrence needed.
+    //you can just write a similar layout to update. no constraint reference needed.
     [UIView updateConstraints:^{
         self.testView.layoutLeading.equalTo(self.view).constant(metric);
         
@@ -70,7 +70,7 @@
     }];
     change = !change;
     
-    //each time we remake the constraints, we record the refrence to self.constraint.
+    //each time we remake the constraints, we record the reference to self.constraint.
     //you can also use the code below to perform update. if you do so, you must also create a variable to record the constraint.
     //use [UIView updateConstraint:], no constraint variable is needed. we seek it for you.
     

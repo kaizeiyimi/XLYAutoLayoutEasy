@@ -155,14 +155,14 @@ static BOOL __XLYShouldCountConstraint = NO;
         for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
             NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
             EXLYConstraintSimilarState state;
-            NSLayoutConstraint *similarContraint = [UIView xly_similarConstraintsWithConstraint:constraint similarState:&state];
-            if (similarContraint) {
+            NSLayoutConstraint *similarConstraint = [UIView xly_similarConstraintsWithConstraint:constraint similarState:&state];
+            if (similarConstraint) {
                 if (state == EXLYConstraintSimilar) {
-                    similarContraint.constant = constraint.constant;
+                    similarConstraint.constant = constraint.constant;
                 } else if (state == EXLYConstraintReverseSimilar) {
-                    similarContraint.constant = - constraint.constant * similarContraint.multiplier;
+                    similarConstraint.constant = - constraint.constant * similarConstraint.multiplier;
                 }
-                [constraints addObject:similarContraint];
+                [constraints addObject:similarConstraint];
             } else {
                 [constraint xly_install];
                 [constraints addObject:constraint];
@@ -260,11 +260,8 @@ static BOOL __XLYShouldCountConstraint = NO;
 {
     return [[self xly_associatedConstraints] filteredArrayUsingPredicate:
             [NSPredicate predicateWithBlock:^BOOL(NSLayoutConstraint *constraint, NSDictionary *bindings) {
-        if ([NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"]) {
-            return NO;
-        }
-        return YES;
-    }]];
+                return ![NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"];
+            }]];
 }
 
 + (NSLayoutConstraint *)xly_similarConstraintsWithConstraint:(NSLayoutConstraint *)theConstraint similarState:(EXLYConstraintSimilarState *)stateRef

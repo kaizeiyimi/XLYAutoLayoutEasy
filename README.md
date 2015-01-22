@@ -51,7 +51,7 @@ swift compiler has a bug that `UILayoutPriority` variables cannot appear in code
 
 ###work with other constraints###
 
-unlike some other lib, my lib **can work together** with constraints you created not in my way, for example, constraints created from storyboard or xib or even the VFL or the previous API have no difference with the constraints created in **+[UIView makeConstarint:]**, and can be searched in **update** or **remake**.
+unlike some other lib, my lib **can work together** with constraints you created not in my way, for example, constraints created from storyboard or xib or even the VFL or the previous API have no difference with the constraints created in **+[UIView makeConstraint:]**, and can be searched in **update** or **remake**.
 
 ### How to use ###
 

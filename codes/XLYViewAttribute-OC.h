@@ -15,7 +15,7 @@
 - (XLYConstraint *(^)(id attr))greaterThanOrEqualTo;
 - (XLYConstraint *(^)(id attr))lessThanOrEqualTo;
 
-//for constaint only constraints
+//for constant only constraints
 - (XLYConstraint *(^)(CGFloat attr))equalToConstant;
 - (XLYConstraint *(^)(CGFloat attr))greaterThanOrEqualToConstant;
 - (XLYConstraint *(^)(CGFloat attr))lessThanOrEqualToConstant;

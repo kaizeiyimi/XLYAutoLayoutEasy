@@ -70,7 +70,7 @@
 {
     if (!_constraint) {
         id firstItem = nil, secondItem = nil;
-        NSLayoutAttribute firstAttribute = NSLayoutAttributeNotAnAttribute, secondAttribute = NSLayoutAttributeNotAnAttribute;
+        NSLayoutAttribute firstAttribute, secondAttribute = NSLayoutAttributeNotAnAttribute;
         
         firstItem = self.firstViewAttribute.view;
         firstAttribute = self.firstViewAttribute.ns_layoutAttribute;
@@ -83,11 +83,11 @@
             secondAttribute = firstAttribute;
         } else if ([self.secondAttribute isKindOfClass:NSNumber.class]) { //其他数值类型
             if (firstAttribute == NSLayoutAttributeWidth || firstAttribute == NSLayoutAttributeHeight) {
-                self.layoutConstant = [self.secondAttribute doubleValue];
+                self.layoutConstant = [self.secondAttribute floatValue];
             } else {
                 secondItem = [firstItem superview];
                 secondAttribute = firstAttribute;
-                self.layoutConstant = [self.secondAttribute doubleValue];
+                self.layoutConstant = [self.secondAttribute floatValue];
             }
         }
         NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:self.relation toItem:secondItem attribute:secondAttribute multiplier:self.layoutMultiplier constant:self.layoutConstant];

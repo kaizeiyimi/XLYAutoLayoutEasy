@@ -19,7 +19,7 @@
     } else {
         UIView *commonSuperView = self.firstItem;
         if (self.secondItem) {
-            UIView *commonSuperView = [UIView xly_ClosestCommonSuperviewForView1:self.firstItem view2:self.secondItem];
+            commonSuperView = [UIView xly_ClosestCommonSuperviewForView1:self.firstItem view2:self.secondItem];
             NSAssert(commonSuperView, @"must have a common superview of %@ and %@ to add the constraint %@.", self.firstItem, self.secondItem, self);
         }
         [commonSuperView addConstraint:self];
@@ -49,7 +49,7 @@
 - (EXLYConstraintSimilarState)xly_similarStateWithConstraint:(NSLayoutConstraint *)theConstraint
 {
     // apple says:  'priority' property may only be modified as part of initial set up.  An exception will be thrown if it is set after a constraint has been added to a view.
-    // But it really can be modifed after added to a view as long as the priority is not requied. you can change priority from a to b where a and b are both less than 1000, and no exception will be throw.
+    // But it really can be modified after added to a view as long as the priority is not required. you can change priority from a to b where a and b are both less than 1000, and no exception will be throw.
     // but here we respect to the doc, modify the priority is not allowed in my codes. you can still modify priority out of my codes.
 
         if (self.firstItem == theConstraint.firstItem && self.secondItem == theConstraint.secondItem) {
@@ -62,7 +62,7 @@
         } else if (self.firstItem == theConstraint.secondItem && self.secondItem == theConstraint.firstItem) {
             if (self.firstAttribute != theConstraint.secondAttribute) return EXLYConstraintNotSimilar;
             if (self.secondAttribute != theConstraint.firstAttribute) return EXLYConstraintNotSimilar;
-            if (fabsf(self.multiplier * theConstraint.multiplier - 1.0) > 1e-6) return EXLYConstraintNotSimilar;
+            if (fabsf(self.multiplier * theConstraint.multiplier - 1.0f) > 1e-6) return EXLYConstraintNotSimilar;
             if (self.priority != theConstraint.priority) return EXLYConstraintNotSimilar;
             //relation
             if (self.relation == NSLayoutRelationEqual) {

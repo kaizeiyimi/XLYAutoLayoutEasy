@@ -75,7 +75,7 @@
 
 
 /**
- *  make and active new constraints. the constraints you created in the block will active automaticly.
+ *  make and active new constraints. the constraints you created in the block will active automatically.
  */
 + (NSArray *)makeConstraints:(dispatch_block_t)block;
 
@@ -85,7 +85,7 @@
  *
  *  if no similar constraint found, the newly created constraint will active.
  *
- * apple says: priority property may only be modified as part of initial set up.  An exception will be thrown if it is set after a constraint has been added to a view. But it really can be modifed after added to a view as long as the priority is not requied. you can change priority from a to b where a and b are both less than 1000 and no exception is thrown. But  modify the priority here in my codes is not allowed.
+ * apple says: priority property may only be modified as part of initial set up.  An exception will be thrown if it is set after a constraint has been added to a view. But it really can be modified after added to a view as long as the priority is not required. you can change priority from a to b where a and b are both less than 1000 and no exception is thrown. But  modify the priority here in my codes is not allowed.
  *
  *
  *  the 'NSContentSizeLayoutConstraint' is not included in similar constraints cause they are created by setting 'CompressionResistance' and 'hugging' properties of view.
@@ -99,7 +99,7 @@
  *
  *  2. remove all constraints whose firstItem or secondItem equals to the recorded view.
  *
- *  3. make and active newly created contraints.
+ *  3. make and active newly created constraints.
  *
  *  you must pay attention to use this method.
  *
@@ -113,7 +113,7 @@
 - (UIView *)xly_closestCommonSuperviewWithView:(UIView *)view;
 + (UIView *)xly_ClosestCommonSuperviewForView1:(UIView *)view1 view2:(UIView *)view2;
 
-///find all associated constraints whose firstItem or secondItem is the reciever.
+///find all associated constraints whose firstItem or secondItem is the receiver.
 - (NSArray *)xly_associatedConstraints;
 
 @end
