@@ -51,10 +51,6 @@
 //NSLayoutAttributeNotAnAttribute
 @property (nonatomic, strong, readonly) XLYViewAttribute *layoutNone NS_AVAILABLE_IOS(6_0);
 
-///full version for layout* properties.
-- (XLYViewAttribute *(^)(NSLayoutAttribute))layoutAttribute;
-
-
 /*  these three methods can help to perform create, update and remake constraints for you. you just create constraints in the block,
  *  everything will be done for you.
  *
