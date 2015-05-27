@@ -5,7 +5,7 @@
 //  Copyright (c) 2014年 kaizei. All rights reserved.
 //
 
-#import "XLYConstraint-OC.h"
+#import "XLYConstraint.h"
 #import "XLYViewAttribute-OC.h"
 #import "UIView+XLYAutoLayoutAddition.h"
 #import "NSLayoutConstraint+XLYAutoLayoutAddition.h"

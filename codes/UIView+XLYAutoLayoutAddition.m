@@ -7,283 +7,214 @@
 
 #import "UIView+XLYAutoLayoutAddition.h"
 
-#import "XLAutoLayoutEasyPrivate.h"
-#import "NSLayoutConstraint+XLYAutoLayoutAddition.h"
+#import <objc/runtime.h>
+#import "XLYAutoLayoutEasyPrivate.h"
 
 @implementation UIView (XLYAutoLayoutAddition)
 
-- (XLYViewAttribute *(^)(NSLayoutAttribute))layoutAttribute {
-    return ^XLYViewAttribute *(NSLayoutAttribute attr) {
-        XLYViewAttribute *viewAttribute = [XLYViewAttribute new];
-        viewAttribute.view = self;
-        viewAttribute.ns_layoutAttribute = attr;
-        return viewAttribute;
-    };
+- (void)setXly_debugName:(NSString *)debugName
+{
+  objc_setAssociatedObject(self, "XLYLayoutConstraintDebugName", debugName, OBJC_ASSOCIATION_COPY);
 }
 
-- (XLYViewAttribute *)layoutTop {
-    return self.layoutAttribute(NSLayoutAttributeTop);
+- (NSString *)xly_debugName
+{
+  return objc_getAssociatedObject(self, "XLYLayoutConstraintDebugName");
 }
 
-- (XLYViewAttribute *)layoutLeft {
-    return self.layoutAttribute(NSLayoutAttributeLeft);
+- (XLYViewAttribute *)xly_layoutAttribute:(NSLayoutAttribute)attribute {
+  XLYViewAttribute *viewAttribute = [XLYViewAttribute new];
+  viewAttribute.view = self;
+  viewAttribute.ns_layoutAttribute = attribute;
+  return viewAttribute;
 }
 
-- (XLYViewAttribute *)layoutRight {
-    return self.layoutAttribute(NSLayoutAttributeRight);
+- (XLYViewAttribute *(^)(NSLayoutAttribute))xly_layoutAttribute {
+  return ^XLYViewAttribute *(NSLayoutAttribute attr) {
+    return [self xly_layoutAttribute:attr];
+  };
 }
 
-- (XLYViewAttribute *)layoutBottom {
-    return self.layoutAttribute(NSLayoutAttributeBottom);
+- (XLYViewAttribute *)xly_top {
+  return [self xly_layoutAttribute:NSLayoutAttributeTop];
 }
 
-- (XLYViewAttribute *)layoutLeading {
-    return self.layoutAttribute(NSLayoutAttributeLeading);
+- (XLYViewAttribute *)xly_left {
+  return [self xly_layoutAttribute:NSLayoutAttributeLeft];
 }
 
-- (XLYViewAttribute *)layoutTrailing {
-    return self.layoutAttribute(NSLayoutAttributeTrailing);
+- (XLYViewAttribute *)xly_right {
+  return [self xly_layoutAttribute:NSLayoutAttributeRight];
 }
 
-- (XLYViewAttribute *)layoutHeight {
-    return self.layoutAttribute(NSLayoutAttributeHeight);
+- (XLYViewAttribute *)xly_bottom {
+  return [self xly_layoutAttribute:NSLayoutAttributeBottom];
 }
 
-- (XLYViewAttribute *)layoutWidth {
-    return self.layoutAttribute(NSLayoutAttributeWidth);
+- (XLYViewAttribute *)xly_leading {
+  return [self xly_layoutAttribute:NSLayoutAttributeLeading];
 }
 
-- (XLYViewAttribute *)layoutCenterX {
-    return self.layoutAttribute(NSLayoutAttributeCenterX);
+- (XLYViewAttribute *)xly_trailing {
+  return [self xly_layoutAttribute:NSLayoutAttributeTrailing];
 }
 
-- (XLYViewAttribute *)layoutCenterY {
-    return self.layoutAttribute(NSLayoutAttributeCenterY);
+- (XLYViewAttribute *)xly_height {
+  return [self xly_layoutAttribute:NSLayoutAttributeHeight];
 }
 
-- (XLYViewAttribute *)layoutBaseLine {
-    return self.layoutAttribute(NSLayoutAttributeBaseline);
+- (XLYViewAttribute *)xly_width {
+  return [self xly_layoutAttribute:NSLayoutAttributeWidth];
 }
 
-- (XLYViewAttribute *)layoutLastBaseLine {
-    return self.layoutAttribute(NSLayoutAttributeLastBaseline);
+- (XLYViewAttribute *)xly_centerX {
+  return [self xly_layoutAttribute:NSLayoutAttributeCenterX];
 }
 
-- (XLYViewAttribute *)layoutFirstBaseLine {
-    return self.layoutAttribute(NSLayoutAttributeFirstBaseline);
+- (XLYViewAttribute *)xly_centerY {
+  return [self xly_layoutAttribute:NSLayoutAttributeCenterY];
 }
 
-- (XLYViewAttribute *)layoutTopMargin {
-    return self.layoutAttribute(NSLayoutAttributeTopMargin);
+- (XLYViewAttribute *)xly_baseLine {
+  return [self xly_layoutAttribute:NSLayoutAttributeBaseline];
 }
 
-- (XLYViewAttribute *)layoutLeftMargin {
-    return self.layoutAttribute(NSLayoutAttributeLeftMargin);
+- (XLYViewAttribute *)xly_lastBaseLine {
+  return [self xly_layoutAttribute:NSLayoutAttributeLastBaseline];
 }
 
-- (XLYViewAttribute *)layoutBottomMargin {
-    return self.layoutAttribute(NSLayoutAttributeBottomMargin);
+- (XLYViewAttribute *)xly_firstBaseLine {
+  return [self xly_layoutAttribute:NSLayoutAttributeFirstBaseline];
 }
 
-- (XLYViewAttribute *)layoutRightMargin {
-    return self.layoutAttribute(NSLayoutAttributeRightMargin);
+- (XLYViewAttribute *)xly_topMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeTopMargin];
 }
 
-- (XLYViewAttribute *)layoutLeadingMargin {
-    return self.layoutAttribute(NSLayoutAttributeLeadingMargin);
+- (XLYViewAttribute *)xly_leftMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeLeftMargin];
 }
 
-- (XLYViewAttribute *)layoutTrailingMargin {
-    return self.layoutAttribute(NSLayoutAttributeTrailingMargin);
+- (XLYViewAttribute *)xly_bottomMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeBottomMargin];
 }
 
-- (XLYViewAttribute *)layoutCenterXWithinMargins {
-    return self.layoutAttribute(NSLayoutAttributeCenterXWithinMargins);
+- (XLYViewAttribute *)xly_rightMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeRightMargin];
 }
 
-- (XLYViewAttribute *)layoutCenterYWithinMargins {
-    return self.layoutAttribute(NSLayoutAttributeCenterYWithinMargins);
+- (XLYViewAttribute *)xly_leadingMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeLeadingMargin];
 }
 
-- (XLYViewAttribute *)layoutNone {
-    return self.layoutAttribute(NSLayoutAttributeNotAnAttribute);
+- (XLYViewAttribute *)xly_trailingMargin {
+  return [self xly_layoutAttribute:NSLayoutAttributeTrailingMargin];
+}
+
+- (XLYViewAttribute *)xly_centerXWithinMargins {
+  return [self xly_layoutAttribute:NSLayoutAttributeCenterXWithinMargins];
+}
+
+- (XLYViewAttribute *)xly_centerYWithinMargins {
+  return [self xly_layoutAttribute:NSLayoutAttributeCenterYWithinMargins];
+}
+
+- (XLYViewAttribute *)xly_none {
+  return [self xly_layoutAttribute:NSLayoutAttributeNotAnAttribute];
 }
 
 #pragma mark -
-static BOOL __XLYShouldCountConstraint = NO;
-+ (void)xly_addRawConstraint:(XLYConstraint *)constraint
-{
-    if (__XLYShouldCountConstraint) {
-        [[self xly_constraintsToBeAdded] addObject:constraint];
-    }
-}
-
-+ (NSMutableArray *)xly_constraintsToBeAdded
-{
-    static NSMutableArray *constraintsToBeAdded = nil;
-    if (!constraintsToBeAdded) {
-        constraintsToBeAdded = [NSMutableArray array];
-    }
-    return constraintsToBeAdded;
-}
-
-+ (NSArray *)makeConstraints:(dispatch_block_t)block
-{
-    NSMutableArray *constraints = nil;
-    if (block) {
-        __XLYShouldCountConstraint = YES;
-        constraints = [NSMutableArray array];
-        block();
-        for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
-            NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
-            [constraint xly_install];
-            [constraints addObject:constraint];
-        }
-        [[self xly_constraintsToBeAdded] removeAllObjects];
-        __XLYShouldCountConstraint = NO;
-    }
-    return constraints;
-}
-
-+ (NSArray *)updateConstraints:(dispatch_block_t)block
-{
-    NSMutableArray *constraints = nil;
-    if (block) {
-        __XLYShouldCountConstraint = YES;
-        constraints = [NSMutableArray array];
-        block();
-        for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
-            NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
-            EXLYConstraintSimilarState state;
-            NSLayoutConstraint *similarConstraint = [UIView xly_similarConstraintsWithConstraint:constraint similarState:&state];
-            if (similarConstraint) {
-                if (state == EXLYConstraintSimilar) {
-                    similarConstraint.constant = constraint.constant;
-                } else if (state == EXLYConstraintReverseSimilar) {
-                    similarConstraint.constant = - constraint.constant * similarConstraint.multiplier;
-                }
-                [constraints addObject:similarConstraint];
-            } else {
-                [constraint xly_install];
-                [constraints addObject:constraint];
-            }
-        }
-        [[self xly_constraintsToBeAdded] removeAllObjects];
-        __XLYShouldCountConstraint = NO;
-    }
-    return constraints;
-}
-
-+ (NSArray *)remakeConstraints:(dispatch_block_t)block
-{
-    NSMutableArray *constraints = nil;
-    if (block) {
-        __XLYShouldCountConstraint = YES;
-        constraints = [NSMutableArray array];
-        block();
-        NSMutableSet *relatedViews = [NSMutableSet set];
-        for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
-            [relatedViews addObject:xlyConstraint.firstViewAttribute.view];
-        }
-        for (UIView *view in relatedViews) {
-            for (NSLayoutConstraint *constraint in [view xly_associatedNormalConstraints]) {
-                    [constraint xly_uninstall];
-            }
-        }
-        for (XLYConstraint *xlyConstraint in [self xly_constraintsToBeAdded]) {
-            NSLayoutConstraint *constraint = xlyConstraint.resultConstraint;
-            [constraint xly_install];
-            [constraints addObject:constraint];
-        }
-        [[self xly_constraintsToBeAdded] removeAllObjects];
-        __XLYShouldCountConstraint = NO;
-    }
-    return constraints;
-}
-
-#pragma mark -
-- (UIView *)xly_closestCommonSuperviewWithView:(UIView *)view
-{
-    if (!view) {
-        return nil;
-    }
-    UIView *view1 = self, *view2 = view;
-    NSInteger count1 = 0, count2 = 0;
-    while (view1.superview) {
-        view1 = view1.superview;
-        count1 ++;
-    }
-    while (view2.superview) {
-        view2 = view2.superview;
-        count2 ++;
-    }
-    if (view1 == view2) {
-        view1 = self, view2 = view;
-        for (int i = 0; i < count1 - count2; ++i) {
-            view1 = view1.superview;
-        }
-        for (int i = 0; i < count2 - count1; ++i) {
-            view2 = view2.superview;
-        }
-        for (int i = 0; i <= MIN(count1, count2); ++i) {
-            if (view1 == view2) {
-                return view1;
-            }
-            view1 = view1.superview;
-            view2 = view2.superview;
-        }
-    }
+- (UIView *)xly_closestCommonSuperviewWithView:(UIView *)view {
+  if (!view) {
     return nil;
-}
-
-+ (UIView *)xly_ClosestCommonSuperviewForView1:(UIView *)view1 view2:(UIView *)view2
-{
-    return [view1 xly_closestCommonSuperviewWithView:view2];
-}
-
-- (NSArray *)xly_associatedConstraints
-{
-    NSMutableArray *constraints = [NSMutableArray array];
-    UIView *view = self;
-    while (view) {
-        for (NSLayoutConstraint *constraint in view.constraints) {
-            if (constraint.firstItem == self || constraint.secondItem == self) {
-                [constraints addObject:constraint];
-            }
-        }
-        view = view.superview;
+  }
+  UIView *view1 = self, *view2 = view;
+  NSInteger count1 = 0, count2 = 0;
+  while (view1.superview) {
+    view1 = view1.superview;
+    count1 ++;
+  }
+  while (view2.superview) {
+    view2 = view2.superview;
+    count2 ++;
+  }
+  if (view1 == view2) {
+    view1 = self, view2 = view;
+    for (int i = 0; i < count1 - count2; ++i) {
+      view1 = view1.superview;
     }
-    return constraints;
+    for (int i = 0; i < count2 - count1; ++i) {
+      view2 = view2.superview;
+    }
+    for (int i = 0; i <= MIN(count1, count2); ++i) {
+      if (view1 == view2) {
+        return view1;
+      }
+      view1 = view1.superview;
+      view2 = view2.superview;
+    }
+  }
+  return nil;
 }
 
-- (NSArray *)xly_associatedNormalConstraints
-{
-    return [[self xly_associatedConstraints] filteredArrayUsingPredicate:
-            [NSPredicate predicateWithBlock:^BOOL(NSLayoutConstraint *constraint, NSDictionary *bindings) {
-                return ![NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"];
-            }]];
++ (UIView *)xly_ClosestCommonSuperviewForView1:(UIView *)view1 view2:(UIView *)view2 {
+  return [view1 xly_closestCommonSuperviewWithView:view2];
 }
 
-+ (NSLayoutConstraint *)xly_similarConstraintsWithConstraint:(NSLayoutConstraint *)theConstraint similarState:(EXLYConstraintSimilarState *)stateRef
-{
-    UIView *commonSuperView = theConstraint.firstItem;
-    if (theConstraint.secondItem) {
-        commonSuperView = [self xly_ClosestCommonSuperviewForView1:theConstraint.firstItem view2:theConstraint.secondItem];
-    }
-    while (commonSuperView) {
-        for (NSLayoutConstraint *constraint in commonSuperView.constraints.reverseObjectEnumerator) {
-            if ([NSStringFromClass(constraint.class) isEqualToString:@"NSContentSizeLayoutConstraint"]) continue;
-            EXLYConstraintSimilarState state = [theConstraint xly_similarStateWithConstraint:constraint];
-            if (state != EXLYConstraintNotSimilar) {
-                if (stateRef) {
-                    *stateRef = state;
-                }
-                return constraint;
-            }
-        }
-        commonSuperView = commonSuperView.superview;
-    }
-    return nil;
+@end
+
+
+#pragma mark - comosite support
+
+@implementation UIView (XLYAutoLayoutAdditionSizeExtention)
+
+- (XLYViewSizeAttribute *)xly_size {
+  XLYViewSizeAttribute *attribute = [XLYViewSizeAttribute new];
+  attribute.widthAttribute = self.xly_width;
+  attribute.heightAttribute = self.xly_height;
+  return attribute;
+}
+
+@end
+
+
+@implementation UIView (XLYAutoLayoutAdditionCenterExtention)
+
+- (XLYViewCenterAttribute *)xly_center {
+  XLYViewCenterAttribute *attribute = [XLYViewCenterAttribute new];
+  attribute.centerXAttribute = self.xly_centerX;
+  attribute.centerYAttribute = self.xly_centerY;
+  return attribute;
+}
+
+- (XLYViewCenterAttribute *)xly_centerWithinMargins {
+  XLYViewCenterAttribute *attribute = [XLYViewCenterAttribute new];
+  attribute.centerXAttribute = self.xly_centerXWithinMargins;
+  attribute.centerYAttribute = self.xly_centerYWithinMargins;
+  return attribute;
+}
+
+@end
+
+
+@implementation UIView (XLYAutoLayoutAdditionEdgeExtention)
+
+- (XLYViewEdgeAttribute *)xly_edge {
+  XLYViewEdgeAttribute *attribute = [XLYViewEdgeAttribute new];
+  attribute.topAttribute = self.xly_top;
+  attribute.leadingAttribute = self.xly_leading;
+  attribute.bottomAttribute = self.xly_bottom;
+  attribute.trailingAttribute = self.xly_trailing;
+  return attribute;
+}
+
+- (XLYViewEdgeAttribute *)xly_edgeWithMargin {
+  XLYViewEdgeAttribute *attribute = [XLYViewEdgeAttribute new];
+  attribute.topAttribute = self.xly_topMargin;
+  attribute.leadingAttribute = self.xly_leadingMargin;
+  attribute.bottomAttribute = self.xly_bottomMargin;
+  attribute.trailingAttribute = self.xly_trailingMargin;
+  return attribute;
 }
 
 @end

@@ -6,13 +6,21 @@
 //
 
 #import "XLYViewAttribute.h"
-
-@class XLYConstraint;
+#import "XLYConstraint.h"
 
 @interface XLYViewAttribute (XLYAutoLayoutEasySwiftSupport)
 
-- (XLYConstraint *)equalTo:(id)attr;
-- (XLYConstraint *)greaterThanOrEqualTo:(id)attr;
-- (XLYConstraint *)lessThanOrEqualTo:(id)attr;
+- (nonnull XLYEnhancedViewAttribute *)priority:(UILayoutPriority)priority;
+- (nonnull XLYEnhancedViewAttribute *)multiplier:(CGFloat)multiplier;
+- (nonnull XLYEnhancedViewAttribute *)constant:(CGFloat)constant;
+
+@end
+
+
+@interface XLYEnhancedViewAttribute (XLYAutoLayoutEasySwiftSupport)
+
+- (nonnull XLYEnhancedViewAttribute *)priority:(UILayoutPriority)priority;
+- (nonnull XLYEnhancedViewAttribute *)multiplier:(CGFloat)multiplier;
+- (nonnull XLYEnhancedViewAttribute *)constant:(CGFloat)constant;
 
 @end

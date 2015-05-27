@@ -10,8 +10,8 @@
 @interface UIViewController (XLYAutoLayoutAddition)
 
 ///wrap the topLayoutGuide
-@property (nonatomic, strong, readonly) UIView *topLayoutGuideView NS_AVAILABLE_IOS(7_0);
+@property (nonatomic, strong, readonly, nonnull) UIView *xly_topGuideView NS_AVAILABLE_IOS(7_0);
 ///wrap the bottomLayoutGuide
-@property (nonatomic, strong, readonly) UIView *bottomLayoutGuideView NS_AVAILABLE_IOS(7_0);
+@property (nonatomic, strong, readonly, nonnull) UIView *xly_bottomGuideView NS_AVAILABLE_IOS(7_0);
 
 @end

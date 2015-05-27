@@ -6,95 +6,79 @@
 //
 
 #import "XLYConstraint.h"
-#import "XLAutoLayoutEasyPrivate.h"
+
+#import "XLYAutoLayoutEasyPrivate.h"
 
 @interface XLYConstraint ()
 
-@property (nonatomic, assign) CGFloat layoutMultiplier;
-@property (nonatomic, assign) float layoutPriority;
-@property (nonatomic, assign) CGFloat layoutConstant;
-
-@property (nonatomic, strong) NSLayoutConstraint *constraint;
+@property (nonatomic, strong) NSLayoutConstraint *resultConstraint;
 
 @end
 
 @implementation XLYConstraint
 
-- (instancetype)init
-{
-    if (self = [super init]) {
-        self.layoutMultiplier = 1.0;
-        self.layoutPriority = UILayoutPriorityRequired;
-        self.layoutConstant = 0.0;
+@synthesize directionOption = _directionOption;
+
+- (instancetype)init {
+  if (self = [super init]) {
+    self.layoutMultiplier = 1.0;
+    self.layoutPriority = UILayoutPriorityRequired;
+    self.layoutConstant = 0.0;
+    self.directionOption = NSLayoutFormatDirectionLeadingToTrailing;
+    [NSLayoutConstraint xly_addRawConstraint:self];
+  }
+  return self;
+}
+
+- (NSLayoutAttribute)adjustAttribute:(NSLayoutAttribute)attribute withLayoutDirection:(NSLayoutFormatOptions)directionOption {
+  if (directionOption == NSLayoutFormatDirectionLeftToRight) {
+    switch (attribute) {
+      case NSLayoutAttributeLeading: { return NSLayoutAttributeLeft; } break;
+      case NSLayoutAttributeLeadingMargin: { return NSLayoutAttributeLeftMargin; } break;
+      case NSLayoutAttributeTrailing: { return NSLayoutAttributeRight; } break;
+      case NSLayoutAttributeTrailingMargin: { return NSLayoutAttributeRightMargin; } break;
+      default:
+        return attribute;
+        break;
     }
-    return self;
-}
-
-- (XLYConstraint *(^)(float))priority {
-    return ^XLYConstraint *(float thePriority) {
-        return [self priority:thePriority];
-    };
-}
-
-- (XLYConstraint *(^)(CGFloat))multipliedBy {
-    return ^XLYConstraint *(CGFloat multiplier) {
-        return [self multipliedBy:multiplier];
-    };
-}
-
-- (XLYConstraint *(^)(CGFloat))constant {
-    return ^XLYConstraint *(CGFloat attr) {
-        return [self constant:attr];
-    };
-}
-
-- (XLYConstraint *)priority:(float)priority
-{
-    self.layoutPriority = priority;
-    return self;
-}
-
-- (XLYConstraint *)multipliedBy:(CGFloat)multiplier
-{
-    self.layoutMultiplier = multiplier;
-    return self;
-}
-
-- (XLYConstraint *)constant:(CGFloat)constant
-{
-    self.layoutConstant = constant;
-    return self;
-}
-
-- (NSLayoutConstraint *)resultConstraint
-{
-    if (!_constraint) {
-        id firstItem = nil, secondItem = nil;
-        NSLayoutAttribute firstAttribute, secondAttribute = NSLayoutAttributeNotAnAttribute;
-        
-        firstItem = self.firstViewAttribute.view;
-        firstAttribute = self.firstViewAttribute.ns_layoutAttribute;
-        
-        if ([self.secondAttribute isKindOfClass:XLYViewAttribute.class]) {
-            secondItem = [self.secondAttribute view];
-            secondAttribute = [(XLYViewAttribute *)self.secondAttribute ns_layoutAttribute];
-        } else if ([self.secondAttribute isKindOfClass:UIView.class]) { //layoutGuide目前实现为UIVIew
-            secondItem = self.secondAttribute;
-            secondAttribute = firstAttribute;
-        } else if ([self.secondAttribute isKindOfClass:NSNumber.class]) { //其他数值类型
-            if (firstAttribute == NSLayoutAttributeWidth || firstAttribute == NSLayoutAttributeHeight) {
-                self.layoutConstant = [self.secondAttribute floatValue];
-            } else {
-                secondItem = [firstItem superview];
-                secondAttribute = firstAttribute;
-                self.layoutConstant = [self.secondAttribute floatValue];
-            }
-        }
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:self.relation toItem:secondItem attribute:secondAttribute multiplier:self.layoutMultiplier constant:self.layoutConstant];
-        constraint.priority = self.layoutPriority;
-        _constraint = constraint;
+  } else if (directionOption == NSLayoutFormatDirectionRightToLeft) {
+    switch (attribute) {
+      case NSLayoutAttributeLeading: { return NSLayoutAttributeRight; } break;
+      case NSLayoutAttributeLeadingMargin: { return NSLayoutAttributeRightMargin; } break;
+      case NSLayoutAttributeTrailing: { return NSLayoutAttributeLeft; } break;
+      case NSLayoutAttributeTrailingMargin: { return NSLayoutAttributeLeftMargin; } break;
+      default:
+        return attribute;
+        break;
     }
-    return _constraint;
+  }
+  return attribute;
+}
+
+- (NSLayoutConstraint *)resultConstraint {
+  if (!_resultConstraint) {
+    id firstItem = self.firstViewAttribute.view, secondItem = self.secondViewAttribute.view;
+    NSLayoutAttribute firstAttribute = self.firstViewAttribute.ns_layoutAttribute;
+    NSLayoutAttribute secondAttribute = self.secondViewAttribute.ns_layoutAttribute;
+
+    firstAttribute = [self adjustAttribute:firstAttribute withLayoutDirection:self.directionOption];
+    secondAttribute = [self adjustAttribute:secondAttribute withLayoutDirection:self.directionOption];
+    
+    CGFloat layoutConstant = self.layoutConstant;
+    if (self.firstViewAttribute.ns_layoutAttribute != firstAttribute
+        && self.directionOption == NSLayoutFormatDirectionRightToLeft) {
+      layoutConstant = -layoutConstant;
+    }
+    
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem attribute:firstAttribute relatedBy:self.relation toItem:secondItem attribute:secondAttribute multiplier:self.layoutMultiplier constant:layoutConstant];
+    constraint.priority = self.layoutPriority;
+    _resultConstraint = constraint;
+  }
+  return _resultConstraint;
+}
+
+- (NSArray *)resultConstraints {
+  return @[self.resultConstraint];
 }
 
 @end

@@ -9,14 +9,12 @@
 
 @implementation UIViewController (XLYAutoLayoutAddition)
 
-- (UIView *)topLayoutGuideView
-{
-    return (UIView *)self.topLayoutGuide;
+- (UIView *)xly_topGuideView {
+  return (UIView *)self.topLayoutGuide;
 }
 
-- (UIView *)bottomLayoutGuideView
-{
-    return (UIView *)self.bottomLayoutGuide;
+- (UIView *)xly_bottomGuideView {
+  return (UIView *)self.bottomLayoutGuide;
 }
 
 @end
