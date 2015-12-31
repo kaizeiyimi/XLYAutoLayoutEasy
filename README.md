@@ -1,3 +1,10 @@
+# DEPRECATED #
+
+use **XAutoLayout** (written in swift) instead.
+
+This repo will never update. It's now has some problems in ios9, and I will not repair it. Sorry.
+
+
 ## upgraded to 2.0! ##
 added new feature for **direction** handling, refactored all APIs prefixed with **xly_** and some more. 
 
