@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F63600FF1A29623100E3DB35 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F63600FD1A29623100E3DB35 /* LICENSE */; };
+		F6B76CDD1CC8C04400436CB2 /* XLYALEAtrribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */; };
+		F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */; };
 		F6D2FFCD1A1B825000981D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D2FFCC1A1B825000981D11 /* main.m */; };
 		F6D2FFD01A1B825000981D11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D2FFCF1A1B825000981D11 /* AppDelegate.m */; };
 		F6D2FFD61A1B825000981D11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6D2FFD41A1B825000981D11 /* Main.storyboard */; };
@@ -29,6 +31,12 @@
 /* Begin PBXFileReference section */
 		F63600FD1A29623100E3DB35 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F63600FE1A29623100E3DB35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEAtrribute.h; sourceTree = "<group>"; };
+		F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALEAtrribute.m; sourceTree = "<group>"; };
+		F6B76CDE1CC8C06900436CB2 /* XLYALEProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLYALEProtocols.h; sourceTree = "<group>"; };
+		F6B76CDF1CC8CD9700436CB2 /* XLYALEGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEGeneration.h; sourceTree = "<group>"; };
+		F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALEGeneration.m; sourceTree = "<group>"; };
+		F6B76CE21CC8D3EE00436CB2 /* XLYALEPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XLYALEPrivate.h; path = Private/XLYALEPrivate.h; sourceTree = "<group>"; };
 		F6D2FFC71A1B825000981D11 /* XLYAutoLayoutEasyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLYAutoLayoutEasyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D2FFCB1A1B825000981D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6D2FFCC1A1B825000981D11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +74,12 @@
 			children = (
 				F63600FD1A29623100E3DB35 /* LICENSE */,
 				F63600FE1A29623100E3DB35 /* README.md */,
+				F6B76CDE1CC8C06900436CB2 /* XLYALEProtocols.h */,
+				F6B76CDF1CC8CD9700436CB2 /* XLYALEGeneration.h */,
+				F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */,
+				F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */,
+				F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */,
+				F6B76CE21CC8D3EE00436CB2 /* XLYALEPrivate.h */,
 			);
 			name = XLYAutoLayoutEasy;
 			path = ../codes;
@@ -231,8 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */,
 				F6D2FFD01A1B825000981D11 /* AppDelegate.m in Sources */,
 				F6D2FFCD1A1B825000981D11 /* main.m in Sources */,
+				F6B76CDD1CC8C04400436CB2 /* XLYALEAtrribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
