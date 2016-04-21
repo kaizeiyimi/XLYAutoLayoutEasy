@@ -8,6 +8,7 @@
 
 #import "XLYALEAtrribute.h"
 #import "XLYALEPrivate.h"
+#import "XLYALEGeneration.h"
 
 
 @implementation XLYALEAttribute
@@ -22,7 +23,26 @@
 
 @end
 
-@implementation XLYALEAttribute (XLYALEAttributeContainerSupport)
+
+@implementation XLYALEAttribute (XLYALERelationMakeableSupport)
+
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))equal {
+    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+        return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
+    };
+}
+
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))lessOrEqual {
+    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+        return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
+    };
+}
+
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))greaterOrEqual {
+    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+        return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
+    };
+}
 
 - (XLYALEAttributeX *(^)(CGFloat))c {
     return ^XLYALEAttributeX *(CGFloat c) {
@@ -47,14 +67,6 @@
 }
 
 @end
-
-
-//@implementation XLYALEAttribute (XLYALERelationMakeableSupport)
-//
-//
-//
-//
-//@end
 
 
 @implementation XLYALEAttributeX

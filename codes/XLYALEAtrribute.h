@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XLYALEProtocols.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XLYALEAttribute : NSObject
@@ -42,9 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-@interface XLYALEAttribute (XLYALEAttributeContainerSupport) <XLYALEAttributeContainer>
-@end
 
 @interface XLYALEAttribute (XLYALERelationMakeableSupport) <XLYALERelationMakeable>
 @end
