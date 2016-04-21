@@ -1,12 +1,12 @@
 //
-//  CocoaExtension.m
+//  XLYALECocoaExtension.m
 //  XLYAutoLayoutEasyDemo
 //
 //  Created by kaizei on 16/4/21.
 //  Copyright © 2016年 kaizei. All rights reserved.
 //
 
-#import "CocoaExtension.h"
+#import "XLYALECocoaExtension.h"
 #import "XLYALEGeneration.h"
 #import "XLYALEAtrribute.h"
 
@@ -99,6 +99,40 @@
 - (XLYALEAttributeX *)xly_generateX {
     return [[XLYALEAttributeX alloc] initWithAttributeX:[[XLYALEAttributeX alloc] initWithItem:nil attr:NSLayoutAttributeNotAnAttribute]
                                                constant:self.floatValue];
+}
+
+@end
+
+
+
+@implementation UIView (XLYALESupport)
+
+-(id<XLYALERelationMakeable>)xly_layoutAttribute:(NSLayoutAttribute)attr {
+    return [[XLYALEAttribute alloc] initWithItem:self attr:attr];
+}
+
+- (NSArray<XLYALERelationMakeable> *)xly_size {
+    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeWidth],
+                                                [self xly_layoutAttribute:NSLayoutAttributeHeight]];
+}
+
+- (NSArray<XLYALERelationMakeable> *)xly_center {
+    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeWidth],
+                                                [self xly_layoutAttribute:NSLayoutAttributeHeight]];
+}
+
+- (NSArray<XLYALERelationMakeable> *)xly_edge {
+    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeTop],
+                                                [self xly_layoutAttribute:NSLayoutAttributeLeading],
+                                                [self xly_layoutAttribute:NSLayoutAttributeBottom],
+                                                [self xly_layoutAttribute:NSLayoutAttributeTrailing]];
+}
+
+- (NSArray<XLYALERelationMakeable> *)xly_edgeLR {
+    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeTop],
+                                                [self xly_layoutAttribute:NSLayoutAttributeLeft],
+                                                [self xly_layoutAttribute:NSLayoutAttributeBottom],
+                                                [self xly_layoutAttribute:NSLayoutAttributeRight]];
 }
 
 @end

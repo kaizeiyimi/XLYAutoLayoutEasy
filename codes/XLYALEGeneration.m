@@ -49,6 +49,7 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
     [self adjustAttributesForFirst:first second:second];
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:first.item attribute:first.attr relatedBy:relation toItem:second.item attribute:second.attr multiplier:second.multiplier constant:second.constant];
     constraint.priority = second.priority;
+    constraint.active = self.autoActive;
     [self.constraints addObject:constraint];
     return constraint;
 }
@@ -153,6 +154,33 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
     XLYALEContext *context = stack.lastObject;
     [stack removeLastObject];
     return context.constraints;
+}
+
+@end
+
+
+
+@implementation NSArray (XLYALECompositeEqualSupport)
+
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))xly_compositeEqual {
+    return ^NSArray<NSLayoutConstraint *> *(NSArray *other) {
+        NSMutableArray *result = [NSMutableArray new];
+        for (NSInteger i = 0; i < MIN(self.count, other.count); ++i) {
+            id<XLYALERelationMakeable> first = self[i];
+            id<XLYALEAttributeContainer> second = other[i];
+            BOOL firstValid = [first conformsToProtocol:@protocol(XLYALERelationMakeable)];
+            BOOL secondValid = [second conformsToProtocol:@protocol(XLYALEAttributeContainer)];
+            BOOL firstNull = [first isKindOfClass:[NSNull class]];
+            BOOL secondNull = [second isKindOfClass:[NSNull class]];
+            
+            if (firstValid && secondValid) {
+                [result addObject:first.equal(second)];
+            } else if ((!firstValid && !firstNull) || (!secondValid && !secondNull)) {
+                NSAssert(NO, @"what do you put in array?");
+            }
+        }
+        return result;
+    };
 }
 
 @end

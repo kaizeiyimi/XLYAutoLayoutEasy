@@ -22,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+@interface NSArray (XLYALECompositeEqualSupport)
+
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))xly_compositeEqual;
+
+@end
+
+
 @interface XLYALEContext: NSObject
 
 /**
