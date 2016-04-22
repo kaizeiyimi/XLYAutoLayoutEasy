@@ -32,6 +32,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface XLYALEContext: NSObject
+
++ (NSLayoutConstraint *)constraintWithFirst:(id<XLYALERelationMakeable>)first
+                                   relation:(NSLayoutRelation)relation
+                                     second:(id<XLYALEAttributeContainer>)second;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 #endif /* XLYALEPrivate_h */

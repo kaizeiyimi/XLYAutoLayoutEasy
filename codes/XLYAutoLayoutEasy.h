@@ -10,7 +10,6 @@
 #define XLYAutoLayoutEasy_h
 
 #import "XLYALEProtocols.h"
-#import "XLYALEAtrribute.h"
 #import "XLYALEGeneration.h"
 #import "XLYALECocoaExtension.h"
 

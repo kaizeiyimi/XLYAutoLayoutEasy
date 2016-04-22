@@ -29,14 +29,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface XLYALEContext: NSObject
-
-/**
- do not use this method outside your own `equal`, `lessOrEqual` and `greaterOrEqual` methods.
-
- */
-+ (NSLayoutConstraint *)constraintWithFirst:(id<XLYALERelationMakeable>)first relation:(NSLayoutRelation)relation second:(id<XLYALEAttributeContainer>)second;
-
-@end
-
 NS_ASSUME_NONNULL_END

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F62F03291CC9CF7C003E87F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F03281CC9CF7C003E87F7 /* ViewController.m */; };
+		F62F032F1CC9E053003E87F7 /* XLYALEAtrribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F032E1CC9E053003E87F7 /* XLYALEAtrribute.m */; };
 		F63600FF1A29623100E3DB35 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F63600FD1A29623100E3DB35 /* LICENSE */; };
-		F6B76CDD1CC8C04400436CB2 /* XLYALEAtrribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */; };
 		F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */; };
 		F6B76CE61CC8E89100436CB2 /* XLYALECocoaExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CE51CC8E89100436CB2 /* XLYALECocoaExtension.m */; };
 		F6D2FFCD1A1B825000981D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D2FFCC1A1B825000981D11 /* main.m */; };
@@ -34,14 +34,14 @@
 		F62F03271CC9CF7C003E87F7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F62F03281CC9CF7C003E87F7 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F62F032A1CC9CFFC003E87F7 /* XLYAutoLayoutEasy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLYAutoLayoutEasy.h; sourceTree = "<group>"; };
+		F62F032C1CC9E035003E87F7 /* XLYALEPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEPrivate.h; sourceTree = "<group>"; };
+		F62F032D1CC9E053003E87F7 /* XLYALEAtrribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEAtrribute.h; sourceTree = "<group>"; };
+		F62F032E1CC9E053003E87F7 /* XLYALEAtrribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALEAtrribute.m; sourceTree = "<group>"; };
 		F63600FD1A29623100E3DB35 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F63600FE1A29623100E3DB35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEAtrribute.h; sourceTree = "<group>"; };
-		F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALEAtrribute.m; sourceTree = "<group>"; };
 		F6B76CDE1CC8C06900436CB2 /* XLYALEProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLYALEProtocols.h; sourceTree = "<group>"; };
 		F6B76CDF1CC8CD9700436CB2 /* XLYALEGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEGeneration.h; sourceTree = "<group>"; };
 		F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALEGeneration.m; sourceTree = "<group>"; };
-		F6B76CE21CC8D3EE00436CB2 /* XLYALEPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XLYALEPrivate.h; path = Private/XLYALEPrivate.h; sourceTree = "<group>"; };
 		F6B76CE41CC8E89100436CB2 /* XLYALECocoaExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALECocoaExtension.h; sourceTree = "<group>"; };
 		F6B76CE51CC8E89100436CB2 /* XLYALECocoaExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLYALECocoaExtension.m; sourceTree = "<group>"; };
 		F6D2FFC71A1B825000981D11 /* XLYAutoLayoutEasyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLYAutoLayoutEasyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,14 +85,22 @@
 				F6B76CDE1CC8C06900436CB2 /* XLYALEProtocols.h */,
 				F6B76CDF1CC8CD9700436CB2 /* XLYALEGeneration.h */,
 				F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */,
-				F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */,
-				F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */,
 				F6B76CE41CC8E89100436CB2 /* XLYALECocoaExtension.h */,
 				F6B76CE51CC8E89100436CB2 /* XLYALECocoaExtension.m */,
-				F6B76CE21CC8D3EE00436CB2 /* XLYALEPrivate.h */,
+				F62F032B1CC9E035003E87F7 /* Private */,
 			);
 			name = XLYAutoLayoutEasy;
 			path = ../codes;
+			sourceTree = "<group>";
+		};
+		F62F032B1CC9E035003E87F7 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				F62F032C1CC9E035003E87F7 /* XLYALEPrivate.h */,
+				F62F032D1CC9E053003E87F7 /* XLYALEAtrribute.h */,
+				F62F032E1CC9E053003E87F7 /* XLYALEAtrribute.m */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 		F6D2FFBE1A1B825000981D11 = {
@@ -260,9 +268,9 @@
 				F62F03291CC9CF7C003E87F7 /* ViewController.m in Sources */,
 				F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */,
 				F6D2FFD01A1B825000981D11 /* AppDelegate.m in Sources */,
+				F62F032F1CC9E053003E87F7 /* XLYALEAtrribute.m in Sources */,
 				F6D2FFCD1A1B825000981D11 /* main.m in Sources */,
 				F6B76CE61CC8E89100436CB2 /* XLYALECocoaExtension.m in Sources */,
-				F6B76CDD1CC8C04400436CB2 /* XLYALEAtrribute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

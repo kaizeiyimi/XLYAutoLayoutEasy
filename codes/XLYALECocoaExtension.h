@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface NSNumber (XLYALERelationMakeableSupport) <XLYALERelationMakeable>
+@interface NSNumber (XLYALERelationMakeableSupport) <XLYALEAttributeContainer>
 @end
 
 
