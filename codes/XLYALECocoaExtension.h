@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (XLYALESupport)
 
-- (id<XLYALERelationMakeable>)xly_layoutAttribute:(NSLayoutAttribute)attr;
+- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))xly_layoutAttribute;
 
 - (NSArray<XLYALERelationMakeable> *)xly_size;
 - (NSArray<XLYALERelationMakeable> *)xly_center;

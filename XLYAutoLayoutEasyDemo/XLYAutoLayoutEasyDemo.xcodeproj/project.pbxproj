@@ -33,6 +33,7 @@
 /* Begin PBXFileReference section */
 		F62F03271CC9CF7C003E87F7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F62F03281CC9CF7C003E87F7 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F62F032A1CC9CFFC003E87F7 /* XLYAutoLayoutEasy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLYAutoLayoutEasy.h; sourceTree = "<group>"; };
 		F63600FD1A29623100E3DB35 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F63600FE1A29623100E3DB35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEAtrribute.h; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 			children = (
 				F63600FD1A29623100E3DB35 /* LICENSE */,
 				F63600FE1A29623100E3DB35 /* README.md */,
+				F62F032A1CC9CFFC003E87F7 /* XLYAutoLayoutEasy.h */,
 				F6B76CDE1CC8C06900436CB2 /* XLYALEProtocols.h */,
 				F6B76CDF1CC8CD9700436CB2 /* XLYALEGeneration.h */,
 				F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */,

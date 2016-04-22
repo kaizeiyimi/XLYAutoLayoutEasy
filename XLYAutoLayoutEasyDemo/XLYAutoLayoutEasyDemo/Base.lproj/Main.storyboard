@@ -8,16 +8,17 @@
         <!--View Controller-->
         <scene sceneID="iAD-iD-Qa2">
             <objects>
-                <viewController id="xgB-dp-L4n" sceneMemberID="viewController">
+                <viewController id="xgB-dp-L4n" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iFR-Jh-uHM"/>
                         <viewControllerLayoutGuide type="bottom" id="1Gg-cq-4oy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wwr-gd-bZL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLX-Qh-4wt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

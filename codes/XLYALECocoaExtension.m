@@ -107,32 +107,34 @@
 
 @implementation UIView (XLYALESupport)
 
--(id<XLYALERelationMakeable>)xly_layoutAttribute:(NSLayoutAttribute)attr {
-    return [[XLYALEAttribute alloc] initWithItem:self attr:attr];
+- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))xly_layoutAttribute {
+    return ^id<XLYALERelationMakeable>(NSLayoutAttribute attr) {
+        return [[XLYALEAttribute alloc] initWithItem:self attr:attr];
+    };
 }
 
 - (NSArray<XLYALERelationMakeable> *)xly_size {
-    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeWidth],
-                                                [self xly_layoutAttribute:NSLayoutAttributeHeight]];
+    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeWidth),
+                                                self.xly_layoutAttribute(NSLayoutAttributeHeight)];
 }
 
 - (NSArray<XLYALERelationMakeable> *)xly_center {
-    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeWidth],
-                                                [self xly_layoutAttribute:NSLayoutAttributeHeight]];
+    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeCenterX),
+                                                self.xly_layoutAttribute(NSLayoutAttributeCenterY)];
 }
 
 - (NSArray<XLYALERelationMakeable> *)xly_edge {
-    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeTop],
-                                                [self xly_layoutAttribute:NSLayoutAttributeLeading],
-                                                [self xly_layoutAttribute:NSLayoutAttributeBottom],
-                                                [self xly_layoutAttribute:NSLayoutAttributeTrailing]];
+    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeTop),
+                                                self.xly_layoutAttribute(NSLayoutAttributeLeading),
+                                                self.xly_layoutAttribute(NSLayoutAttributeBottom),
+                                                self.xly_layoutAttribute(NSLayoutAttributeTrailing)];
 }
 
 - (NSArray<XLYALERelationMakeable> *)xly_edgeLR {
-    return (NSArray<XLYALERelationMakeable> *)@[[self xly_layoutAttribute:NSLayoutAttributeTop],
-                                                [self xly_layoutAttribute:NSLayoutAttributeLeft],
-                                                [self xly_layoutAttribute:NSLayoutAttributeBottom],
-                                                [self xly_layoutAttribute:NSLayoutAttributeRight]];
+    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeTop),
+                                                self.xly_layoutAttribute(NSLayoutAttributeLeft),
+                                                self.xly_layoutAttribute(NSLayoutAttributeBottom),
+                                                self.xly_layoutAttribute(NSLayoutAttributeRight)];
 }
 
 @end

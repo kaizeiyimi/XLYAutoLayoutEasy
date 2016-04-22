@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 static NSMutableArray<XLYALEContext *> *stack = nil;
 
-+ (void)initialize {
++ (void)load {
     if (stack == nil) {
         stack = [@[[[XLYALEContext alloc] initWithDirection:NSLayoutFormatDirectionLeadingToTrailing autoActive:NO]] mutableCopy];
     }
@@ -113,7 +113,7 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
         return attr;
     };
     
-    NSLayoutAttribute adjustFirstAttr = adjust(first.attr), adjustSecondAttr = adjust(second.attr);
+    NSLayoutAttribute adjustFirstAttr = adjust(firstAttr), adjustSecondAttr = adjust(secondAttr);
     
     // constant convert. since pair is checked, here we only need to check firstAttr.
     if (firstAttr != adjustFirstAttr && self.direction == NSLayoutFormatDirectionRightToLeft) {
