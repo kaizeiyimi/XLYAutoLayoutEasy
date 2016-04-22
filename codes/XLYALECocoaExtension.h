@@ -19,18 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface UIView (XLYALESupport)
-
-- (id<XLYALERelationMakeable>)xly_layoutAttribute:(NSLayoutAttribute)attr;
-
-- (NSArray<XLYALERelationMakeable> *)xly_size;
-- (NSArray<XLYALERelationMakeable> *)xly_center;
-- (NSArray<XLYALERelationMakeable> *)xly_edge;
-- (NSArray<XLYALERelationMakeable> *)xly_edgeLR;
-
-@end
-
-
 @protocol XLYALELayoutGuideWrapper <NSObject>
 
 - (id<XLYALERelationMakeable>)xly_top;
@@ -39,10 +27,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
 @interface UIViewController (XLYALESupport)
 
-@property(nonatomic, readonly, strong) id<XLYALELayoutGuideWrapper> xly_topGuide;
-@property(nonatomic, readonly, strong) id<XLYALELayoutGuideWrapper> xly_bottomGuide;
+- (id<XLYALELayoutGuideWrapper>)xly_topGuide;
+- (id<XLYALELayoutGuideWrapper>)xly_bottomGuide;
+
+@end
+
+
+@interface UIView (XLYALESupport)
+
+- (id<XLYALERelationMakeable>)xly_layoutAttribute:(NSLayoutAttribute)attr;
+
+- (NSArray<XLYALERelationMakeable> *)xly_size;
+- (NSArray<XLYALERelationMakeable> *)xly_center;
+- (NSArray<XLYALERelationMakeable> *)xly_edge;
+- (NSArray<XLYALERelationMakeable> *)xly_edgeLR;
 
 @end
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F62F03291CC9CF7C003E87F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62F03281CC9CF7C003E87F7 /* ViewController.m */; };
 		F63600FF1A29623100E3DB35 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = F63600FD1A29623100E3DB35 /* LICENSE */; };
 		F6B76CDD1CC8C04400436CB2 /* XLYALEAtrribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CDC1CC8C04400436CB2 /* XLYALEAtrribute.m */; };
 		F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B76CE01CC8CD9700436CB2 /* XLYALEGeneration.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F62F03271CC9CF7C003E87F7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F62F03281CC9CF7C003E87F7 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F63600FD1A29623100E3DB35 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F63600FE1A29623100E3DB35 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F6B76CDB1CC8C04400436CB2 /* XLYALEAtrribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLYALEAtrribute.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 			children = (
 				F6D2FFCE1A1B825000981D11 /* AppDelegate.h */,
 				F6D2FFCF1A1B825000981D11 /* AppDelegate.m */,
+				F62F03271CC9CF7C003E87F7 /* ViewController.h */,
+				F62F03281CC9CF7C003E87F7 /* ViewController.m */,
 				F6D2FFD41A1B825000981D11 /* Main.storyboard */,
 				F6D2FFD71A1B825000981D11 /* Images.xcassets */,
 				F6D2FFD91A1B825000981D11 /* LaunchScreen.xib */,
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F62F03291CC9CF7C003E87F7 /* ViewController.m in Sources */,
 				F6B76CE11CC8CD9700436CB2 /* XLYALEGeneration.m in Sources */,
 				F6D2FFD01A1B825000981D11 /* AppDelegate.m in Sources */,
 				F6D2FFCD1A1B825000981D11 /* main.m in Sources */,

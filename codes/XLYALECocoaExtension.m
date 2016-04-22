@@ -136,3 +136,47 @@
 }
 
 @end
+
+
+
+@interface XLYALELayoutGuideWrapper : NSObject <XLYALELayoutGuideWrapper>
+
+@property (nonatomic, strong) id<UILayoutSupport> guide;
+
+@end
+
+@implementation XLYALELayoutGuideWrapper
+
+- (instancetype)initWithGuide:(id<UILayoutSupport>)guide {
+    if (self = [super init]) {
+        self.guide = guide;
+    }
+    return self;
+}
+
+- (id<XLYALERelationMakeable>)xly_top {
+    return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeTop];
+}
+
+- (id<XLYALERelationMakeable>)xly_bottom {
+    return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeBottom];
+}
+
+- (id<XLYALERelationMakeable>)xly_height {
+    return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeHeight];
+}
+
+@end
+
+
+
+@implementation UIViewController (XLYALESupport)
+
+- (id<XLYALELayoutGuideWrapper>)xly_topGuide {
+    return [[XLYALELayoutGuideWrapper alloc] initWithGuide:self.topLayoutGuide];
+}
+- (id<XLYALELayoutGuideWrapper>)xly_bottomGuide {
+    return [[XLYALELayoutGuideWrapper alloc] initWithGuide:self.bottomLayoutGuide];
+}
+
+@end
