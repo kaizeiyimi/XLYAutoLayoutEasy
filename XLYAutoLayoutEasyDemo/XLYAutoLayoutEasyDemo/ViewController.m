@@ -30,15 +30,20 @@
         v.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
-    [NSLayoutConstraint xly_makeWithDirection:NSLayoutFormatDirectionLeadingToTrailing autoActive:YES construction:^{
-        container.xly_edge.xly_compositeEqual(@[@50, @40, NSNull.null, @-40]);
-        container.xly_layoutAttribute(NSLayoutAttributeHeight).equal((@200));
+    [NSLayoutConstraint ale_makeWithDirection:NSLayoutFormatDirectionRightToLeft autoActive:YES construction:^{
+        container.ale_edge.ale_compositeEqual(@[@50, @40, NSNull.null, @-40]);
+        [container.ale_edge ale_compositeEqual:@[@50, @80, NSNull.null, @-40]];
         
-        v1.xly_size.xly_compositeEqual(@[@50, @50]);
+        container.ale_layoutAttribute(NSLayoutAttributeHeight).ale_equal((@200));
         
-        @[v1.xly_layoutAttribute(NSLayoutAttributeLeading), v1.xly_layoutAttribute(NSLayoutAttributeTop)].xly_compositeEqual(@[@10, @20]);
-        @[v2.xly_layoutAttribute(NSLayoutAttributeLeading), v2.xly_layoutAttribute(NSLayoutAttributeTop)].xly_compositeEqual(@[v1.xly_layoutAttribute(NSLayoutAttributeTrailing), v1.xly_layoutAttribute(NSLayoutAttributeBottom)]);
-        v2.xly_size.xly_compositeEqual(v1.xly_size);
+//        v1.ale_size.ale_compositeEqual(@[@50, @50]);
+        
+        v1.topAnchor.ale_equal(container.topAnchor);
+        [v1.topAnchor ale_equal:container.topAnchor];
+//        
+//        @[v1.ale_layoutAttribute(NSLayoutAttributeLeading), v1.ale_layoutAttribute(NSLayoutAttributeTop)].ale_compositeEqual(@[@10, @20]);
+//        @[v2.ale_layoutAttribute(NSLayoutAttributeLeading), v2.ale_layoutAttribute(NSLayoutAttributeTop)].ale_compositeEqual(@[v1.ale_layoutAttribute(NSLayoutAttributeTrailing), v1.ale_layoutAttribute(NSLayoutAttributeBottom)]);
+//        v2.ale_size.ale_compositeEqual(v1.ale_size);
         
     }];
 }

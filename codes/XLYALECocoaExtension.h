@@ -21,29 +21,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol XLYALELayoutGuideWrapper <NSObject>
 
-- (id<XLYALERelationMakeable>)xly_top;
-- (id<XLYALERelationMakeable>)xly_bottom;
-- (id<XLYALERelationMakeable>)xly_height;
+- (id<XLYALERelationMakeable>)ale_top;
+- (id<XLYALERelationMakeable>)ale_bottom;
+- (id<XLYALERelationMakeable>)ale_height;
 
 @end
 
 
 @interface UIViewController (XLYALESupport)
 
-- (id<XLYALELayoutGuideWrapper>)xly_topGuide;
-- (id<XLYALELayoutGuideWrapper>)xly_bottomGuide;
+- (id<XLYALELayoutGuideWrapper>)ale_topGuide;
+- (id<XLYALELayoutGuideWrapper>)ale_bottomGuide;
 
 @end
 
 
 @interface UIView (XLYALESupport)
 
-- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))xly_layoutAttribute;
+- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))ale_layoutAttribute;
 
-- (NSArray<XLYALERelationMakeable> *)xly_size;
-- (NSArray<XLYALERelationMakeable> *)xly_center;
-- (NSArray<XLYALERelationMakeable> *)xly_edge;
-- (NSArray<XLYALERelationMakeable> *)xly_edgeLR;
+- (NSArray<XLYALERelationMakeable> *)ale_size;
+- (NSArray<XLYALERelationMakeable> *)ale_center;
+- (NSArray<XLYALERelationMakeable> *)ale_edge;
+- (NSArray<XLYALERelationMakeable> *)ale_edgeLR;
 
 @end
 

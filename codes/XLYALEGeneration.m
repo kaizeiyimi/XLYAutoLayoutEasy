@@ -45,7 +45,7 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 }
 
 - (NSLayoutConstraint *)makeForFirst:(id<XLYALERelationMakeable>)left relation:(NSLayoutRelation)relation second:(id<XLYALEAttributeContainer>)right {
-    XLYALEAttributeX *first = [left xly_generateX], *second = [right xly_generateX];
+    XLYALEAttributeX *first = [left ale_generateX], *second = [right ale_generateX];
     [self adjustAttributesForFirst:first second:second];
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:first.item attribute:first.attr relatedBy:relation toItem:second.item attribute:second.attr multiplier:second.multiplier constant:second.constant];
     constraint.priority = second.priority;
@@ -120,7 +120,7 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
         constant = -constant;
     }
     
-    //
+    // change
     first.attr = adjustFirstAttr;
     second.item = secondItem;
     second.attr = adjustSecondAttr;
@@ -137,15 +137,15 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 
 @implementation NSLayoutConstraint (XLYALEGeneration)
 
-+ (NSArray<NSLayoutConstraint *> *)xly_make:(dispatch_block_t)block {
-    return [self xly_makeWithDirection:NSLayoutFormatDirectionLeadingToTrailing autoActive:YES construction:block];
++ (NSArray<NSLayoutConstraint *> *)ale_make:(dispatch_block_t)block {
+    return [self ale_makeWithDirection:NSLayoutFormatDirectionLeadingToTrailing autoActive:YES construction:block];
 }
 
-+ (NSArray<NSLayoutConstraint *> *)xly_makeWithDirection:(NSLayoutFormatOptions)direction construction:(dispatch_block_t)block {
-    return [self xly_makeWithDirection:direction autoActive:YES construction:block];
++ (NSArray<NSLayoutConstraint *> *)ale_makeWithDirection:(NSLayoutFormatOptions)direction construction:(dispatch_block_t)block {
+    return [self ale_makeWithDirection:direction autoActive:YES construction:block];
 }
 
-+ (NSArray<NSLayoutConstraint *> *)xly_makeWithDirection:(NSLayoutFormatOptions)direction
++ (NSArray<NSLayoutConstraint *> *)ale_makeWithDirection:(NSLayoutFormatOptions)direction
                                               autoActive:(BOOL)autoActive
                                             construction:(dispatch_block_t)block {
     
@@ -162,8 +162,14 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 
 @implementation NSArray (XLYALECompositeEqualSupport)
 
-- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))xly_compositeEqual {
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual {
     return ^NSArray<NSLayoutConstraint *> *(NSArray *other) {
+        return [self ale_compositeEqual:other];
+    };
+}
+//- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual {
+//    return ^NSArray<NSLayoutConstraint *> *(NSArray *other) {
+- (NSArray<NSLayoutConstraint *> *)ale_compositeEqual:(NSArray *)other {
         NSMutableArray *result = [NSMutableArray new];
         for (NSInteger i = 0; i < MIN(self.count, other.count); ++i) {
             id<XLYALERelationMakeable> first = self[i];
@@ -174,13 +180,13 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
             BOOL secondNull = [second isKindOfClass:[NSNull class]];
             
             if (firstValid && secondValid) {
-                [result addObject:first.equal(second)];
+                [result addObject:first.ale_equal(second)];
             } else if ((!firstValid && !firstNull) || (!secondValid && !secondNull)) {
                 NSAssert(NO, @"what do you put in array?");
             }
         }
         return result;
-    };
+//    };
 }
 
 @end

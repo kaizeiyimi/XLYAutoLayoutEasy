@@ -13,46 +13,57 @@
 
 @implementation NSLayoutAnchor (XLYALERelationMakeableSupport)
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))equal {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_equal {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))lessOrEqual {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_lessOrEqual {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))greaterOrEqual {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_greaterOrEqual {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))c {
+- (NSLayoutConstraint *)ale_equal:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
+}
+
+- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
+}
+
+- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
+}
+
+- (XLYALEAttributeX *(^)(CGFloat))ale_c {
     return ^XLYALEAttributeX *(CGFloat c) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] constant:c];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] constant:c];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))m {
+- (XLYALEAttributeX *(^)(CGFloat))ale_m {
     return ^XLYALEAttributeX *(CGFloat m) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] multiplier:m];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] multiplier:m];
     };
 }
 
-- (XLYALEAttributeX *(^)(UILayoutPriority))p {
+- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p {
     return ^XLYALEAttributeX *(UILayoutPriority p) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] priority:p];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] priority:p];
     };
 }
 
-- (XLYALEAttributeX *)xly_generateX {
+- (XLYALEAttributeX *)ale_generateX {
     return [[XLYALEAttributeX alloc] initWithItem:[self valueForKey:@"item"] attr:[[self valueForKey:@"attr"] integerValue]];
 }
-
 
 @end
 
@@ -60,25 +71,25 @@
 
 @implementation NSNumber (XLYALERelationMakeableSupport)
 
-- (XLYALEAttributeX *(^)(CGFloat))c {
+- (XLYALEAttributeX *(^)(CGFloat))ale_c {
     return ^XLYALEAttributeX *(CGFloat c) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] constant:c];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] constant:c];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))m {
+- (XLYALEAttributeX *(^)(CGFloat))ale_m {
     return ^XLYALEAttributeX *(CGFloat m) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] multiplier:m];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] multiplier:m];
     };
 }
 
-- (XLYALEAttributeX *(^)(UILayoutPriority))p {
+- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p {
     return ^XLYALEAttributeX *(UILayoutPriority p) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] priority:p];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] priority:p];
     };
 }
 
-- (XLYALEAttributeX *)xly_generateX {
+- (XLYALEAttributeX *)ale_generateX {
     return [[XLYALEAttributeX alloc] initWithAttributeX:[[XLYALEAttributeX alloc] initWithItem:nil attr:NSLayoutAttributeNotAnAttribute]
                                                constant:self.floatValue];
 }
@@ -89,34 +100,34 @@
 
 @implementation UIView (XLYALESupport)
 
-- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))xly_layoutAttribute {
+- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))ale_layoutAttribute {
     return ^id<XLYALERelationMakeable>(NSLayoutAttribute attr) {
         return [[XLYALEAttribute alloc] initWithItem:self attr:attr];
     };
 }
 
-- (NSArray<XLYALERelationMakeable> *)xly_size {
-    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeWidth),
-                                                self.xly_layoutAttribute(NSLayoutAttributeHeight)];
+- (NSArray<XLYALERelationMakeable> *)ale_size {
+    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeWidth),
+                                                self.ale_layoutAttribute(NSLayoutAttributeHeight)];
 }
 
-- (NSArray<XLYALERelationMakeable> *)xly_center {
-    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeCenterX),
-                                                self.xly_layoutAttribute(NSLayoutAttributeCenterY)];
+- (NSArray<XLYALERelationMakeable> *)ale_center {
+    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeCenterX),
+                                                self.ale_layoutAttribute(NSLayoutAttributeCenterY)];
 }
 
-- (NSArray<XLYALERelationMakeable> *)xly_edge {
-    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeTop),
-                                                self.xly_layoutAttribute(NSLayoutAttributeLeading),
-                                                self.xly_layoutAttribute(NSLayoutAttributeBottom),
-                                                self.xly_layoutAttribute(NSLayoutAttributeTrailing)];
+- (NSArray<XLYALERelationMakeable> *)ale_edge {
+    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeTop),
+                                                self.ale_layoutAttribute(NSLayoutAttributeLeading),
+                                                self.ale_layoutAttribute(NSLayoutAttributeBottom),
+                                                self.ale_layoutAttribute(NSLayoutAttributeTrailing)];
 }
 
-- (NSArray<XLYALERelationMakeable> *)xly_edgeLR {
-    return (NSArray<XLYALERelationMakeable> *)@[self.xly_layoutAttribute(NSLayoutAttributeTop),
-                                                self.xly_layoutAttribute(NSLayoutAttributeLeft),
-                                                self.xly_layoutAttribute(NSLayoutAttributeBottom),
-                                                self.xly_layoutAttribute(NSLayoutAttributeRight)];
+- (NSArray<XLYALERelationMakeable> *)ale_edgeLR {
+    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeTop),
+                                                self.ale_layoutAttribute(NSLayoutAttributeLeft),
+                                                self.ale_layoutAttribute(NSLayoutAttributeBottom),
+                                                self.ale_layoutAttribute(NSLayoutAttributeRight)];
 }
 
 @end
@@ -138,15 +149,15 @@
     return self;
 }
 
-- (id<XLYALERelationMakeable>)xly_top {
+- (id<XLYALERelationMakeable>)ale_top {
     return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeTop];
 }
 
-- (id<XLYALERelationMakeable>)xly_bottom {
+- (id<XLYALERelationMakeable>)ale_bottom {
     return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeBottom];
 }
 
-- (id<XLYALERelationMakeable>)xly_height {
+- (id<XLYALERelationMakeable>)ale_height {
     return [[XLYALEAttribute alloc] initWithItem:self.guide attr:NSLayoutAttributeHeight];
 }
 
@@ -156,10 +167,10 @@
 
 @implementation UIViewController (XLYALESupport)
 
-- (id<XLYALELayoutGuideWrapper>)xly_topGuide {
+- (id<XLYALELayoutGuideWrapper>)ale_topGuide {
     return [[XLYALELayoutGuideWrapper alloc] initWithGuide:self.topLayoutGuide];
 }
-- (id<XLYALELayoutGuideWrapper>)xly_bottomGuide {
+- (id<XLYALELayoutGuideWrapper>)ale_bottomGuide {
     return [[XLYALELayoutGuideWrapper alloc] initWithGuide:self.bottomLayoutGuide];
 }
 

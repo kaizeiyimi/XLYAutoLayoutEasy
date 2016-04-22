@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSLayoutConstraint (XLYALEGeneration)
 
-+ (NSArray<NSLayoutConstraint *> *)xly_make:(dispatch_block_t)block;
-+ (NSArray<NSLayoutConstraint *> *)xly_makeWithDirection:(NSLayoutFormatOptions)direction construction:(dispatch_block_t)block;
-+ (NSArray<NSLayoutConstraint *> *)xly_makeWithDirection:(NSLayoutFormatOptions)direction
++ (NSArray<NSLayoutConstraint *> *)ale_make:(dispatch_block_t)block;
++ (NSArray<NSLayoutConstraint *> *)ale_makeWithDirection:(NSLayoutFormatOptions)direction construction:(dispatch_block_t)block;
++ (NSArray<NSLayoutConstraint *> *)ale_makeWithDirection:(NSLayoutFormatOptions)direction
                                               autoActive:(BOOL)autoActive
                                             construction:(dispatch_block_t)block;
 
@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (XLYALECompositeEqualSupport)
 
-- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))xly_compositeEqual;
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual;
+- (NSArray<NSLayoutConstraint *> *)ale_compositeEqual:(NSArray *)other;
 
 @end
 

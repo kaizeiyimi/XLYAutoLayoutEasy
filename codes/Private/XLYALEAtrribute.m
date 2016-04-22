@@ -26,43 +26,55 @@
 
 @implementation XLYALEAttribute (XLYALERelationMakeableSupport)
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))equal {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_equal {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))lessOrEqual {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_lessOrEqual {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))greaterOrEqual {
+- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_greaterOrEqual {
     return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))c {
+- (NSLayoutConstraint *)ale_equal:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
+}
+
+- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
+}
+
+- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALEAttributeContainer>)other {
+    return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
+}
+
+- (XLYALEAttributeX *(^)(CGFloat))ale_c {
     return ^XLYALEAttributeX *(CGFloat c) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] constant:c];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] constant:c];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))m {
+- (XLYALEAttributeX *(^)(CGFloat))ale_m {
     return ^XLYALEAttributeX *(CGFloat m) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] multiplier:m];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] multiplier:m];
     };
 }
 
-- (XLYALEAttributeX *(^)(UILayoutPriority))p {
+- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p {
     return ^XLYALEAttributeX *(UILayoutPriority p) {
-        return [[XLYALEAttributeX alloc] initWithAttributeX:[self xly_generateX] priority:p];
+        return [[XLYALEAttributeX alloc] initWithAttributeX:[self ale_generateX] priority:p];
     };
 }
 
-- (XLYALEAttributeX *)xly_generateX {
+- (XLYALEAttributeX *)ale_generateX {
     return [[XLYALEAttributeX alloc] initWithItem:self.item attr:self.attr];
 }
 
@@ -90,16 +102,20 @@
     return self;
 }
 
+- (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute {
+    return [self initWithItem:attribute.item attr:attribute.attr constant:attribute.constant multiplier:attribute.multiplier priority:attribute.priority];
+}
+
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute constant:(CGFloat)constant {
-    return [self initWithItem:attribute.item attr:attribute.attr constant:constant multiplier:1 priority:UILayoutPriorityRequired];
+    return [self initWithItem:attribute.item attr:attribute.attr constant:constant multiplier:attribute.multiplier priority:attribute.priority];
 }
 
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute multiplier:(CGFloat)multiplier {
-    return [self initWithItem:attribute.item attr:attribute.attr constant:0 multiplier:multiplier priority:UILayoutPriorityRequired];
+    return [self initWithItem:attribute.item attr:attribute.attr constant:attribute.constant multiplier:multiplier priority:attribute.priority];
 }
 
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute priority:(UILayoutPriority)priority {
-    return [self initWithItem:attribute.item attr:attribute.attr constant:0 multiplier:1 priority:priority];
+    return [self initWithItem:attribute.item attr:attribute.attr constant:attribute.constant multiplier:attribute.multiplier priority:priority];
 }
 
 @end
@@ -107,26 +123,26 @@
 
 @implementation XLYALEAttributeX (XLYALEAttributeContainerSupport)
 
-- (XLYALEAttributeX *(^)(CGFloat))c {
+- (XLYALEAttributeX *(^)(CGFloat))ale_c {
     return ^XLYALEAttributeX *(CGFloat c) {
         return [[XLYALEAttributeX alloc] initWithAttributeX:self constant:c];
     };
 }
 
-- (XLYALEAttributeX *(^)(CGFloat))m {
+- (XLYALEAttributeX *(^)(CGFloat))ale_m {
     return ^XLYALEAttributeX *(CGFloat m) {
         return [[XLYALEAttributeX alloc] initWithAttributeX:self multiplier:m];
     };
 }
 
-- (XLYALEAttributeX *(^)(UILayoutPriority))p {
+- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p {
     return ^XLYALEAttributeX *(UILayoutPriority p) {
         return [[XLYALEAttributeX alloc] initWithAttributeX:self priority:p];
     };
 }
 
-- (XLYALEAttributeX *)xly_generateX {
-    return self;
+- (XLYALEAttributeX *)ale_generateX {
+    return [[XLYALEAttributeX alloc] initWithAttributeX:self constant:self.constant];
 }
 
 @end

@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
                   multiplier:(CGFloat)multiplier
                     priority:(UILayoutPriority)priority;
 
+- (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute;
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute constant:(CGFloat)constant;
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute multiplier:(CGFloat)multiplier;
 - (instancetype)initWithAttributeX:(XLYALEAttributeX *)attribute priority:(UILayoutPriority)priority;
