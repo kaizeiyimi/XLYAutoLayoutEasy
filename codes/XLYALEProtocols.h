@@ -13,21 +13,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class XLYALEAttribute, XLYALEAttributeX;
-
 @protocol XLYALEAttributeContainer <NSObject>
 
 /// change the **constant** of result constraint.
-- (XLYALEAttributeX *(^)(CGFloat))ale_c;
+- (id<XLYALEAttributeContainer>(^)(CGFloat))ale_c;
 
 /// change the **multiplier** of result constraint.
-- (XLYALEAttributeX *(^)(CGFloat))ale_m;
+- (id<XLYALEAttributeContainer>(^)(CGFloat))ale_m;
 
 /// change the **priority** of result constraint.
-- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p;
+- (id<XLYALEAttributeContainer>(^)(UILayoutPriority))ale_p;
 
 /// generate **XAttributeX** to construct constraint.
-- (XLYALEAttributeX *)ale_generateX;
+- (id<XLYALEAttributeContainer>)ale_generateX;
 
 @end
 

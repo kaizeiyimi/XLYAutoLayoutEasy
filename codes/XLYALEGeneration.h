@@ -24,10 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (XLYALECompositeEqualSupport)
 
-- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual;
-- (NSArray<NSLayoutConstraint *> *)ale_compositeEqual:(NSArray *)other;
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_equal;
+- (NSArray<NSLayoutConstraint *> *)ale_equal:(NSArray *)other;
 
 @end
+
+
+id<XLYALERelationMakeable> ale_attribute(id item, NSLayoutAttribute attr);
 
 
 NS_ASSUME_NONNULL_END

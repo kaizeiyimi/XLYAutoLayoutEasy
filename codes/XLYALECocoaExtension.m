@@ -98,42 +98,6 @@
 
 
 
-@implementation UIView (XLYALESupport)
-
-- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))ale_layoutAttribute {
-    return ^id<XLYALERelationMakeable>(NSLayoutAttribute attr) {
-        return [[XLYALEAttribute alloc] initWithItem:self attr:attr];
-    };
-}
-
-- (NSArray<XLYALERelationMakeable> *)ale_size {
-    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeWidth),
-                                                self.ale_layoutAttribute(NSLayoutAttributeHeight)];
-}
-
-- (NSArray<XLYALERelationMakeable> *)ale_center {
-    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeCenterX),
-                                                self.ale_layoutAttribute(NSLayoutAttributeCenterY)];
-}
-
-- (NSArray<XLYALERelationMakeable> *)ale_edge {
-    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeTop),
-                                                self.ale_layoutAttribute(NSLayoutAttributeLeading),
-                                                self.ale_layoutAttribute(NSLayoutAttributeBottom),
-                                                self.ale_layoutAttribute(NSLayoutAttributeTrailing)];
-}
-
-- (NSArray<XLYALERelationMakeable> *)ale_edgeLR {
-    return (NSArray<XLYALERelationMakeable> *)@[self.ale_layoutAttribute(NSLayoutAttributeTop),
-                                                self.ale_layoutAttribute(NSLayoutAttributeLeft),
-                                                self.ale_layoutAttribute(NSLayoutAttributeBottom),
-                                                self.ale_layoutAttribute(NSLayoutAttributeRight)];
-}
-
-@end
-
-
-
 @interface XLYALELayoutGuideWrapper : NSObject <XLYALELayoutGuideWrapper>
 
 @property (nonatomic, strong) id<UILayoutSupport> guide;
@@ -172,6 +136,123 @@
 }
 - (id<XLYALELayoutGuideWrapper>)ale_bottomGuide {
     return [[XLYALELayoutGuideWrapper alloc] initWithGuide:self.bottomLayoutGuide];
+}
+
+@end
+
+
+
+@implementation UIView (XLYALESupport)
+
+- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))ale_attribute {
+    return ^id<XLYALERelationMakeable>(NSLayoutAttribute attr) {
+        return ale_attribute(self, attr);
+    };
+}
+
+- (NSArray<XLYALERelationMakeable> *)ale_size {
+    return (NSArray<XLYALERelationMakeable> *)@[ale_attribute(self, NSLayoutAttributeWidth),
+                                                ale_attribute(self, NSLayoutAttributeHeight)];
+}
+
+- (NSArray<XLYALERelationMakeable> *)ale_center {
+    return (NSArray<XLYALERelationMakeable> *)@[ale_attribute(self, NSLayoutAttributeCenterX),
+                                                ale_attribute(self, NSLayoutAttributeCenterY)];
+}
+
+- (NSArray<XLYALERelationMakeable> *)ale_edge {
+    return (NSArray<XLYALERelationMakeable> *)@[ale_attribute(self, NSLayoutAttributeTop),
+                                                ale_attribute(self, NSLayoutAttributeLeading),
+                                                ale_attribute(self, NSLayoutAttributeBottom),
+                                                ale_attribute(self, NSLayoutAttributeTrailing)];
+}
+
+- (NSArray<XLYALERelationMakeable> *)ale_edgeLR {
+    return (NSArray<XLYALERelationMakeable> *)@[ale_attribute(self, NSLayoutAttributeTop),
+                                                ale_attribute(self, NSLayoutAttributeLeft),
+                                                ale_attribute(self, NSLayoutAttributeBottom),
+                                                ale_attribute(self, NSLayoutAttributeRight)];
+    
+}
+
+- (id<XLYALERelationMakeable>)ale_left {
+    return ale_attribute(self, NSLayoutAttributeLeft);
+}
+
+- (id<XLYALERelationMakeable>)ale_right {
+    return ale_attribute(self, NSLayoutAttributeRight);
+}
+
+- (id<XLYALERelationMakeable>)ale_top {
+    return ale_attribute(self, NSLayoutAttributeTop);
+}
+
+- (id<XLYALERelationMakeable>)ale_bottom {
+    return ale_attribute(self, NSLayoutAttributeBottom);
+}
+
+- (id<XLYALERelationMakeable>)ale_leading {
+    return ale_attribute(self, NSLayoutAttributeLeading);
+}
+
+- (id<XLYALERelationMakeable>)ale_trailing {
+    return ale_attribute(self, NSLayoutAttributeTrailing);
+}
+
+- (id<XLYALERelationMakeable>)ale_width {
+    return ale_attribute(self, NSLayoutAttributeWidth);
+}
+
+- (id<XLYALERelationMakeable>)ale_height {
+    return ale_attribute(self, NSLayoutAttributeHeight);
+}
+
+- (id<XLYALERelationMakeable>)ale_centerX {
+    return ale_attribute(self, NSLayoutAttributeCenterX);
+}
+
+- (id<XLYALERelationMakeable>)ale_centerY {
+    return ale_attribute(self, NSLayoutAttributeCenterY);
+}
+
+- (id<XLYALERelationMakeable>)ale_baseline {
+    return ale_attribute(self, NSLayoutAttributeBaseline);
+}
+
+- (id<XLYALERelationMakeable>)ale_firstBaseline {
+    return ale_attribute(self, NSLayoutAttributeFirstBaseline);
+}
+
+- (id<XLYALERelationMakeable>)ale_leftMargin {
+    return ale_attribute(self, NSLayoutAttributeLeftMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_rightMargin {
+    return ale_attribute(self, NSLayoutAttributeRightMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_topMargin {
+    return ale_attribute(self, NSLayoutAttributeTopMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_bottomMargin {
+    return ale_attribute(self, NSLayoutAttributeBottomMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_leadingMargin {
+    return ale_attribute(self, NSLayoutAttributeLeadingMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_trailingMargin {
+    return ale_attribute(self, NSLayoutAttributeTrailingMargin);
+}
+
+- (id<XLYALERelationMakeable>)ale_centerXWithinMargins {
+    return ale_attribute(self, NSLayoutAttributeCenterXWithinMargins);
+}
+
+- (id<XLYALERelationMakeable>)ale_centerYWithinMargins {
+    return ale_attribute(self, NSLayoutAttributeCenterYWithinMargins);
 }
 
 @end

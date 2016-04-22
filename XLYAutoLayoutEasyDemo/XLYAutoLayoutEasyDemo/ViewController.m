@@ -31,19 +31,22 @@
     }
     
     [NSLayoutConstraint ale_makeWithDirection:NSLayoutFormatDirectionRightToLeft autoActive:YES construction:^{
-        container.ale_edge.ale_compositeEqual(@[@50, @40, NSNull.null, @-40]);
-        [container.ale_edge ale_compositeEqual:@[@50, @80, NSNull.null, @-40]];
+        [container.ale_edge ale_equal:@[@50, @80, NSNull.null, @-40]];
+        [container.ale_height ale_equal:@200];
         
-        container.ale_layoutAttribute(NSLayoutAttributeHeight).ale_equal((@200));
+        [v1.ale_size ale_equal: @[@40, @40]];
+        v1.topAnchor.ale_equal(container.topAnchor.ale_c(10));
+        [v1.leadingAnchor ale_equal:container.leadingAnchor];
         
-//        v1.ale_size.ale_compositeEqual(@[@50, @50]);
+        [v2.ale_size ale_equal:@[@100, @40]];
+        [@[v2.ale_leading, v2.ale_top] ale_equal:@[v1.ale_centerX, v1.ale_bottom.ale_c(50)]];
+       
         
-        v1.topAnchor.ale_equal(container.topAnchor);
-        [v1.topAnchor ale_equal:container.topAnchor];
-//        
-//        @[v1.ale_layoutAttribute(NSLayoutAttributeLeading), v1.ale_layoutAttribute(NSLayoutAttributeTop)].ale_compositeEqual(@[@10, @20]);
-//        @[v2.ale_layoutAttribute(NSLayoutAttributeLeading), v2.ale_layoutAttribute(NSLayoutAttributeTop)].ale_compositeEqual(@[v1.ale_layoutAttribute(NSLayoutAttributeTrailing), v1.ale_layoutAttribute(NSLayoutAttributeBottom)]);
-//        v2.ale_size.ale_compositeEqual(v1.ale_size);
+//        v1.ale_top.equal(v2.ale_top)
+        
+//        v1.topAnchor.ale.equal(v2.topAnchor.ale.c(50).p(750));
+        
+        v1.topAnchor.ale_equal(v2.topAnchor.ale_c(50).ale_p(750));
         
     }];
 }

@@ -162,33 +162,40 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 
 @implementation NSArray (XLYALECompositeEqualSupport)
 
-- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual {
+- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_equal {
     return ^NSArray<NSLayoutConstraint *> *(NSArray *other) {
-        return [self ale_compositeEqual:other];
+        return [self ale_equal:other];
     };
 }
-//- (NSArray<NSLayoutConstraint *> *(^)(NSArray *))ale_compositeEqual {
-//    return ^NSArray<NSLayoutConstraint *> *(NSArray *other) {
-- (NSArray<NSLayoutConstraint *> *)ale_compositeEqual:(NSArray *)other {
-        NSMutableArray *result = [NSMutableArray new];
-        for (NSInteger i = 0; i < MIN(self.count, other.count); ++i) {
-            id<XLYALERelationMakeable> first = self[i];
-            id<XLYALEAttributeContainer> second = other[i];
-            BOOL firstValid = [first conformsToProtocol:@protocol(XLYALERelationMakeable)];
-            BOOL secondValid = [second conformsToProtocol:@protocol(XLYALEAttributeContainer)];
-            BOOL firstNull = [first isKindOfClass:[NSNull class]];
-            BOOL secondNull = [second isKindOfClass:[NSNull class]];
-            
-            if (firstValid && secondValid) {
-                [result addObject:first.ale_equal(second)];
-            } else if ((!firstValid && !firstNull) || (!secondValid && !secondNull)) {
-                NSAssert(NO, @"what do you put in array?");
-            }
+
+- (NSArray<NSLayoutConstraint *> *)ale_equal:(NSArray *)other {
+# if DEBUG
+    if (self.count != other.count) {
+        NSLog(@"XLYAutoLayoutEasy WARNING:\n  the two array's count are not the same");
+    }
+#endif
+    NSMutableArray *result = [NSMutableArray new];
+    for (NSInteger i = 0; i < MIN(self.count, other.count); ++i) {
+        id<XLYALERelationMakeable> first = self[i];
+        id<XLYALEAttributeContainer> second = other[i];
+        BOOL firstValid = [first conformsToProtocol:@protocol(XLYALERelationMakeable)];
+        BOOL secondValid = [second conformsToProtocol:@protocol(XLYALEAttributeContainer)];
+        BOOL firstNull = [first isKindOfClass:[NSNull class]];
+        BOOL secondNull = [second isKindOfClass:[NSNull class]];
+        
+        if (firstValid && secondValid) {
+            [result addObject:first.ale_equal(second)];
+        } else if ((!firstValid && !firstNull) || (!secondValid && !secondNull)) {
+            NSAssert(NO, @"what do you put in array?");
         }
-        return result;
-//    };
+    }
+    return result;
 }
 
 @end
+
+id<XLYALERelationMakeable> ale_attribute(id item, NSLayoutAttribute attr) {
+    return [[XLYALEAttribute alloc] initWithItem:item attr:attr];
+}
 
 NS_ASSUME_NONNULL_END

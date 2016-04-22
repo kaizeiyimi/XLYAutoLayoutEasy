@@ -9,6 +9,7 @@
 #ifndef XLYALEPrivate_h
 #define XLYALEPrivate_h
 
+#import "XLYALEProtocols.h"
 #import "XLYALEAtrribute.h"
 
 NS_ASSUME_NONNULL_BEGIN
