@@ -40,11 +40,11 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
     return self;
 }
 
-+ (NSLayoutConstraint *)constraintWithFirst:(id<XLYALERelationMakeable>)first relation:(NSLayoutRelation)relation second:(id<XLYALEAttributeContainer>)second {
++ (NSLayoutConstraint *)constraintWithFirst:(id<XLYALELeftItem>)first relation:(NSLayoutRelation)relation second:(id<XLYALERightItem>)second {
     return [stack.lastObject makeForFirst:first relation:relation second:second];
 }
 
-- (NSLayoutConstraint *)makeForFirst:(id<XLYALERelationMakeable>)left relation:(NSLayoutRelation)relation second:(id<XLYALEAttributeContainer>)right {
+- (NSLayoutConstraint *)makeForFirst:(id<XLYALELeftItem>)left relation:(NSLayoutRelation)relation second:(id<XLYALERightItem>)right {
     XLYALEAttributeX *first = [left ale_generateX], *second = [right ale_generateX];
     [self adjustAttributesForFirst:first second:second];
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:first.item attribute:first.attr relatedBy:relation toItem:second.item attribute:second.attr multiplier:second.multiplier constant:second.constant];
@@ -176,10 +176,10 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 #endif
     NSMutableArray *result = [NSMutableArray new];
     for (NSInteger i = 0; i < MIN(self.count, other.count); ++i) {
-        id<XLYALERelationMakeable> first = self[i];
-        id<XLYALEAttributeContainer> second = other[i];
-        BOOL firstValid = [first conformsToProtocol:@protocol(XLYALERelationMakeable)];
-        BOOL secondValid = [second conformsToProtocol:@protocol(XLYALEAttributeContainer)];
+        id<XLYALELeftItem> first = self[i];
+        id<XLYALERightItem> second = other[i];
+        BOOL firstValid = [first conformsToProtocol:@protocol(XLYALELeftItem)];
+        BOOL secondValid = [second conformsToProtocol:@protocol(XLYALERightItem)];
         BOOL firstNull = [first isKindOfClass:[NSNull class]];
         BOOL secondNull = [second isKindOfClass:[NSNull class]];
         
@@ -194,7 +194,7 @@ static NSMutableArray<XLYALEContext *> *stack = nil;
 
 @end
 
-id<XLYALERelationMakeable> ale_attribute(id item, NSLayoutAttribute attr) {
+id<XLYALELeftItem> ale_attribute(id item, NSLayoutAttribute attr) {
     return [[XLYALEAttribute alloc] initWithItem:item attr:attr];
 }
 

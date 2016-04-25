@@ -35,11 +35,11 @@
         [container.ale_height ale_equal:@200];
         
         [v1.ale_size ale_equal: @[@40, @40]];
-        v1.topAnchor.ale_equal(container.topAnchor.ale_c(10));
-        [v1.leadingAnchor ale_equal:container.leadingAnchor];
+        v1.topAnchor.ale_equal(container.ale_top.ale_c(10));
+        [v1.leadingAnchor ale_equal:container.leadingAnchor.ale_c(20)];
         
         [v2.ale_size ale_equal:@[@100, @40]];
-        [@[v2.ale_leading, v2.ale_top] ale_equal:@[v1.ale_centerX, v1.ale_bottom.ale_c(50)]];
+        [@[v2.ale_leading, v2.ale_top] ale_equal:@[v1.ale_centerX, v1.ale_bottom.ale_c(10)]];
        
         
 //        v1.ale_top.equal(v2.ale_top)

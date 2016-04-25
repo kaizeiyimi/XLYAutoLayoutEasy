@@ -13,32 +13,37 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol XLYALEAttributeContainer <NSObject>
+@class XLYALEAttribute, XLYALEAttributeX;
+
+@protocol XLYALERightItem <NSObject>
 
 /// change the **constant** of result constraint.
-- (id<XLYALEAttributeContainer>(^)(CGFloat))ale_c;
+- (XLYALEAttributeX *(^)(CGFloat))ale_c;
 
 /// change the **multiplier** of result constraint.
-- (id<XLYALEAttributeContainer>(^)(CGFloat))ale_m;
+- (XLYALEAttributeX *(^)(CGFloat))ale_m;
 
 /// change the **priority** of result constraint.
-- (id<XLYALEAttributeContainer>(^)(UILayoutPriority))ale_p;
+- (XLYALEAttributeX *(^)(UILayoutPriority))ale_p;
 
 /// generate **XAttributeX** to construct constraint.
-- (id<XLYALEAttributeContainer>)ale_generateX;
+- (XLYALEAttributeX *)ale_generateX;
 
 @end
 
 
-@protocol XLYALERelationMakeable <NSObject, XLYALEAttributeContainer>
+@protocol XLYALELeftItem <NSObject, XLYALERightItem>
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_equal;
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_lessOrEqual;
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_greaterOrEqual;
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_equal;
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_lessOrEqual;
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_greaterOrEqual;
 
-- (NSLayoutConstraint *)ale_equal:(id<XLYALEAttributeContainer>)other;
-- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALEAttributeContainer>)other;
-- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALEAttributeContainer>)other;
+- (NSLayoutConstraint *)ale_equal:(id<XLYALERightItem>)other;
+- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALERightItem>)other;
+- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALERightItem>)other;
+
+/// generate **XAttribute** to construct constraint.
+- (XLYALEAttribute *)ale_generate;
 
 @end
 

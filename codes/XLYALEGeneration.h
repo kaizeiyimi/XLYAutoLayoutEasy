@@ -29,8 +29,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-id<XLYALERelationMakeable> ale_attribute(id item, NSLayoutAttribute attr);
-
-
 NS_ASSUME_NONNULL_END

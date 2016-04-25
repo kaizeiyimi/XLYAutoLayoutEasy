@@ -11,19 +11,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSLayoutAnchor (XLYALERelationMakeableSupport) <XLYALERelationMakeable>
+@interface NSLayoutAnchor (XLYALELeftItemSupport) <XLYALELeftItem>
 @end
 
 
-@interface NSNumber (XLYALERelationMakeableSupport) <XLYALEAttributeContainer>
+@interface NSNumber (XLYALERightItemSupport) <XLYALERightItem>
 @end
 
 
 @protocol XLYALELayoutGuideWrapper <NSObject>
 
-- (id<XLYALERelationMakeable>)ale_top;
-- (id<XLYALERelationMakeable>)ale_bottom;
-- (id<XLYALERelationMakeable>)ale_height;
+- (id<XLYALELeftItem>)ale_top;
+- (id<XLYALELeftItem>)ale_bottom;
+- (id<XLYALELeftItem>)ale_height;
 
 @end
 
@@ -38,34 +38,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (XLYALESupport)
 
-- (id<XLYALERelationMakeable>(^)(NSLayoutAttribute attr))ale_attribute;
+- (NSArray<XLYALELeftItem> *)ale_size;
+- (NSArray<XLYALELeftItem> *)ale_center;
+- (NSArray<XLYALELeftItem> *)ale_edge;
+- (NSArray<XLYALELeftItem> *)ale_edgeLR;
 
-- (NSArray<XLYALERelationMakeable> *)ale_size;
-- (NSArray<XLYALERelationMakeable> *)ale_center;
-- (NSArray<XLYALERelationMakeable> *)ale_edge;
-- (NSArray<XLYALERelationMakeable> *)ale_edgeLR;
+- (id<XLYALELeftItem>)ale_left;
+- (id<XLYALELeftItem>)ale_right;
+- (id<XLYALELeftItem>)ale_top;
+- (id<XLYALELeftItem>)ale_bottom;
+- (id<XLYALELeftItem>)ale_leading;
+- (id<XLYALELeftItem>)ale_trailing;
+- (id<XLYALELeftItem>)ale_width;
+- (id<XLYALELeftItem>)ale_height;
+- (id<XLYALELeftItem>)ale_centerX;
+- (id<XLYALELeftItem>)ale_centerY;
+- (id<XLYALELeftItem>)ale_baseline;
 
-- (id<XLYALERelationMakeable>)ale_left;
-- (id<XLYALERelationMakeable>)ale_right;
-- (id<XLYALERelationMakeable>)ale_top;
-- (id<XLYALERelationMakeable>)ale_bottom;
-- (id<XLYALERelationMakeable>)ale_leading;
-- (id<XLYALERelationMakeable>)ale_trailing;
-- (id<XLYALERelationMakeable>)ale_width;
-- (id<XLYALERelationMakeable>)ale_height;
-- (id<XLYALERelationMakeable>)ale_centerX;
-- (id<XLYALERelationMakeable>)ale_centerY;
-- (id<XLYALERelationMakeable>)ale_baseline;
-
-- (id<XLYALERelationMakeable>)ale_firstBaseline NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_leftMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_rightMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_topMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_bottomMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_leadingMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_trailingMargin NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_centerXWithinMargins NS_AVAILABLE_IOS(8_0);
-- (id<XLYALERelationMakeable>)ale_centerYWithinMargins NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_firstBaseline NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_leftMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_rightMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_topMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_bottomMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_leadingMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_trailingMargin NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_centerXWithinMargins NS_AVAILABLE_IOS(8_0);
+- (id<XLYALELeftItem>)ale_centerYWithinMargins NS_AVAILABLE_IOS(8_0);
 
 @end
 

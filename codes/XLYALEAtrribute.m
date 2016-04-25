@@ -24,35 +24,35 @@
 @end
 
 
-@implementation XLYALEAttribute (XLYALERelationMakeableSupport)
+@implementation XLYALEAttribute (XLYALELeftItemSupport)
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_equal {
-    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_equal {
+    return ^NSLayoutConstraint *(id<XLYALERightItem> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_lessOrEqual {
-    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_lessOrEqual {
+    return ^NSLayoutConstraint *(id<XLYALERightItem> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *(^)(id<XLYALEAttributeContainer>))ale_greaterOrEqual {
-    return ^NSLayoutConstraint *(id<XLYALEAttributeContainer> other) {
+- (NSLayoutConstraint *(^)(id<XLYALERightItem>))ale_greaterOrEqual {
+    return ^NSLayoutConstraint *(id<XLYALERightItem> other) {
         return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
     };
 }
 
-- (NSLayoutConstraint *)ale_equal:(id<XLYALEAttributeContainer>)other {
+- (NSLayoutConstraint *)ale_equal:(id<XLYALERightItem>)other {
     return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationEqual second:other];
 }
 
-- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALEAttributeContainer>)other {
+- (NSLayoutConstraint *)ale_lessOrEqual:(id<XLYALERightItem>)other {
     return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationLessThanOrEqual second:other];
 }
 
-- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALEAttributeContainer>)other {
+- (NSLayoutConstraint *)ale_greaterOrEqual:(id<XLYALERightItem>)other {
     return [XLYALEContext constraintWithFirst:self relation:NSLayoutRelationGreaterThanOrEqual second:other];
 }
 
@@ -74,6 +74,10 @@
     };
 }
 
+- (XLYALEAttribute *)ale_generate {
+    return [[XLYALEAttribute alloc] initWithItem:self.item attr:self.attr];
+}
+
 - (XLYALEAttributeX *)ale_generateX {
     return [[XLYALEAttributeX alloc] initWithItem:self.item attr:self.attr];
 }
@@ -83,8 +87,17 @@
 
 @implementation XLYALEAttributeX
 
+- (instancetype)initWithLeftItem:(id<XLYALELeftItem>)leftItem {
+    XLYALEAttribute *attribute = [leftItem ale_generate];
+    return [self initWithItem: attribute.item attr: attribute.attr];
+}
+
 - (instancetype)initWithItem:(id)item attr:(NSLayoutAttribute)attr {
     return [self initWithItem:item attr:attr constant:0 multiplier:1 priority:UILayoutPriorityRequired];
+}
+
+- (instancetype)initWithItem:(id)item attr:(NSLayoutAttribute)attr constant:(CGFloat)constant {
+    return [self initWithItem:item attr:attr constant:constant multiplier:1 priority:UILayoutPriorityRequired];
 }
 
 - (instancetype)initWithItem:(id)item
@@ -121,7 +134,7 @@
 @end
 
 
-@implementation XLYALEAttributeX (XLYALEAttributeContainerSupport)
+@implementation XLYALEAttributeX (XLYALERightItemSupport)
 
 - (XLYALEAttributeX *(^)(CGFloat))ale_c {
     return ^XLYALEAttributeX *(CGFloat c) {
